@@ -1,0 +1,3479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="FREUMIA Teachers AI Dashboard — Manage classes, students, courses, assessments, resources, reports, announcements and AI teaching tools."
+    >
+
+    <meta
+        name="theme-color"
+        content="#07111f"
+    >
+
+    <meta
+        name="author"
+        content="FREUMIA"
+    >
+
+    <title>Teachers Dashboard | FREUMIA</title>
+
+    <!--
+        ============================================================
+        FREUMIA TEACHERS AI DASHBOARD
+        ============================================================
+
+        HTML VERSION:
+        Teachers Dashboard V1
+
+        CSS:
+        css/teachers-dashboard.css
+
+        JAVASCRIPT:
+        js/teachers-dashboard.js
+
+        IMPORTANT:
+        This document contains the structural layer only.
+        Styling and application logic are intentionally separated.
+        ============================================================
+    -->
+
+    <link
+        rel="stylesheet"
+        href="css/teachers-dashboard.css"
+    >
+</head>
+
+<body>
+
+    <!-- ==========================================================
+         APPLICATION SHELL
+         ========================================================== -->
+
+    <div
+        id="app"
+        class="app-shell"
+        data-page="teachers-dashboard"
+    >
+
+        <!-- ======================================================
+             MOBILE SIDEBAR OVERLAY
+             ====================================================== -->
+
+        <div
+            id="sidebarOverlay"
+            class="sidebar-overlay"
+            aria-hidden="true"
+        ></div>
+
+
+        <!-- ======================================================
+             SIDEBAR
+             ====================================================== -->
+
+        <aside
+            id="teacherSidebar"
+            class="teacher-sidebar"
+            aria-label="Teacher navigation"
+        >
+
+            <!-- Sidebar Brand -->
+            <div class="sidebar-brand">
+
+                <a
+                    href="teachers-dashboard.html"
+                    class="brand-link"
+                    aria-label="FREUMIA Teachers AI Dashboard"
+                >
+
+                    <div
+                        class="brand-logo"
+                        aria-hidden="true"
+                    >
+                        🧠
+                    </div>
+
+                    <div class="brand-text">
+
+                        <span class="brand-name">
+                            FREUMIA
+                        </span>
+
+                        <span class="brand-subtitle">
+                            Teacher AI
+                        </span>
+
+                    </div>
+
+                </a>
+
+                <button
+                    id="closeSidebarBtn"
+                    class="sidebar-close-btn"
+                    type="button"
+                    aria-label="Close navigation menu"
+                    data-action="close-sidebar"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            <!-- Main Navigation -->
+            <nav
+                class="sidebar-navigation"
+                aria-label="Main teacher navigation"
+            >
+
+                <!-- MAIN -->
+                <div class="navigation-section">
+
+                    <p class="navigation-label">
+                        MAIN
+                    </p>
+
+                    <a
+                        href="teachers-dashboard.html"
+                        class="navigation-item active"
+                        data-nav="dashboard"
+                        aria-current="page"
+                    >
+                        <span
+                            class="navigation-icon"
+                            aria-hidden="true"
+                        >
+                            🏠
+                        </span>
+
+                        <span class="navigation-text">
+                            Dashboard
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="my-classes.html"
+                        class="navigation-item"
+                        data-nav="classes"
+                    >
+                        <span
+                            class="navigation-icon"
+                            aria-hidden="true"
+                        >
+                            👥
+                        </span>
+
+                        <span class="navigation-text">
+                            My Classes
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="my-courses.html"
+                        class="navigation-item"
+                        data-nav="courses"
+                    >
+                        <span
+                            class="navigation-icon"
+                            aria-hidden="true"
+                        >
+                            📖
+                        </span>
+
+                        <span class="navigation-text">
+                            My Courses
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="students.html"
+                        class="navigation-item"
+                        data-nav="students"
+                    >
+                        <span
+                            class="navigation-icon"
+                            aria-hidden="true"
+                        >
+                            👤
+                        </span>
+
+                        <span class="navigation-text">
+                            Students
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="resources-library.html"
+                        class="navigation-item"
+                        data-nav="resources"
+                    >
+                        <span
+                            class="navigation-icon"
+                            aria-hidden="true"
+                        >
+                            📚
+                        </span>
+
+                        <span class="navigation-text">
+                            Resources Library
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="announcements.html"
+                        class="navigation-item"
+                        data-nav="announcements"
+                    >
+                        <span
+                            class="navigation-icon"
+                            aria-hidden="true"
+                        >
+                            📢
+                        </span>
+
+                        <span class="navigation-text">
+                            Announcements
+                        </span>
+                    </a>
+
+                </div>
+
+
+                <!-- TEACHING TOOLS -->
+                <div class="navigation-section">
+
+                    <p class="navigation-label">
+                        TEACHING TOOLS
+                    </p>
+
+
+                    <a
+                        href="ai-resources.html"
+                        class="navigation-item"
+                        data-nav="ai-resources"
+                    >
+                        <span
+                            class="navigation-icon"
+                            aria-hidden="true"
+                        >
+                            ✨
+                        </span>
+
+                        <span class="navigation-text">
+                            AI Resource Creation
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="ai-assessments.html"
+                        class="navigation-item"
+                        data-nav="ai-assessment"
+                    >
+                        <span
+                            class="navigation-icon"
+                            aria-hidden="true"
+                        >
+                            📝
+                        </span>
+
+                        <span class="navigation-text">
+                            AI Assessment
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="ai-teaching-assistant.html"
+                        class="navigation-item"
+                        data-nav="teaching-assistant"
+                    >
+                        <span
+                            class="navigation-icon"
+                            aria-hidden="true"
+                        >
+                            🤖
+                        </span>
+
+                        <span class="navigation-text">
+                            Teaching Assistant AI
+                        </span>
+                    </a>
+
+                </div>
+
+
+                <!-- MANAGEMENT -->
+                <div class="navigation-section">
+
+                    <p class="navigation-label">
+                        MANAGEMENT
+                    </p>
+
+
+                    <a
+                        href="results-reports.html"
+                        class="navigation-item"
+                        data-nav="results"
+                    >
+                        <span
+                            class="navigation-icon"
+                            aria-hidden="true"
+                        >
+                            📊
+                        </span>
+
+                        <span class="navigation-text">
+                            Results &amp; Reports
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="assignments.html"
+                        class="navigation-item"
+                        data-nav="assignments"
+                    >
+                        <span
+                            class="navigation-icon"
+                            aria-hidden="true"
+                        >
+                            📋
+                        </span>
+
+                        <span class="navigation-text">
+                            Assignments
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="study-plans.html"
+                        class="navigation-item"
+                        data-nav="study-plans"
+                    >
+                        <span
+                            class="navigation-icon"
+                            aria-hidden="true"
+                        >
+                            🎯
+                        </span>
+
+                        <span class="navigation-text">
+                            Study Plans
+                        </span>
+                    </a>
+
+                </div>
+
+            </nav>
+
+
+            <!-- Sidebar AI Assistant -->
+            <section
+                class="sidebar-ai-card"
+                aria-labelledby="sidebarAiTitle"
+            >
+
+                <div
+                    class="sidebar-ai-icon"
+                    aria-hidden="true"
+                >
+                    🤖
+                </div>
+
+                <h2 id="sidebarAiTitle">
+                    AI Teaching Assistant
+                </h2>
+
+                <p>
+                    Need help with content, quiz, or explanations?
+                    Ask your AI Assistant.
+                </p>
+
+                <a
+                    href="ai-teaching-assistant.html"
+                    class="sidebar-ai-button"
+                >
+                    Ask AI Assistant
+                    <span aria-hidden="true">→</span>
+                </a>
+
+            </section>
+
+
+            <!-- Sidebar Bottom -->
+            <div class="sidebar-footer">
+
+                <a
+                    href="teacher-settings.html"
+                    class="navigation-item"
+                    data-nav="settings"
+                >
+                    <span
+                        class="navigation-icon"
+                        aria-hidden="true"
+                    >
+                        ⚙️
+                    </span>
+
+                    <span class="navigation-text">
+                        Settings
+                    </span>
+                </a>
+
+
+                <button
+                    id="logoutBtn"
+                    class="navigation-item navigation-button"
+                    type="button"
+                    data-action="logout"
+                >
+                    <span
+                        class="navigation-icon"
+                        aria-hidden="true"
+                    >
+                        ↪
+                    </span>
+
+                    <span class="navigation-text">
+                        Logout
+                    </span>
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- ======================================================
+             MAIN CONTENT AREA
+             ====================================================== -->
+
+        <main
+            id="mainContent"
+            class="main-content"
+        >
+
+            <!-- ==================================================
+                 TOP HEADER
+                 ================================================== -->
+
+            <header
+                class="dashboard-header"
+                aria-label="Dashboard header"
+            >
+
+                <div class="header-left">
+
+                    <button
+                        id="openSidebarBtn"
+                        class="menu-toggle"
+                        type="button"
+                        aria-label="Open navigation menu"
+                        aria-expanded="false"
+                        data-action="open-sidebar"
+                    >
+                        ☰
+                    </button>
+
+                </div>
+
+
+                <!-- Search -->
+                <div
+                    class="global-search"
+                    role="search"
+                >
+
+                    <label
+                        for="globalSearchInput"
+                        class="sr-only"
+                    >
+                        Search students, classes, resources and topics
+                    </label>
+
+                    <input
+                        id="globalSearchInput"
+                        class="global-search-input"
+                        type="search"
+                        name="search"
+                        placeholder="Search students, classes, resources, topics..."
+                        autocomplete="off"
+                        data-action="global-search"
+                    >
+
+                    <button
+                        id="globalSearchBtn"
+                        class="global-search-button"
+                        type="button"
+                        aria-label="Search"
+                        data-action="global-search-submit"
+                    >
+                        🔍
+                    </button>
+
+                    <div
+                        id="searchSuggestions"
+                        class="search-suggestions"
+                        hidden
+                    ></div>
+
+                </div>
+
+
+                <!-- Header Actions -->
+                <div class="header-actions">
+
+                    <!-- Notifications -->
+                    <button
+                        id="notificationsBtn"
+                        class="header-action"
+                        type="button"
+                        aria-label="Notifications"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        data-action="notifications"
+                    >
+
+                        <span
+                            class="header-action-icon"
+                            aria-hidden="true"
+                        >
+                            🔔
+                        </span>
+
+                        <span
+                            id="notificationBadge"
+                            class="notification-badge"
+                            hidden
+                        >
+                            0
+                        </span>
+
+                    </button>
+
+
+                    <!-- Messages -->
+                    <button
+                        id="messagesBtn"
+                        class="header-action"
+                        type="button"
+                        aria-label="Messages"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        data-action="messages"
+                    >
+
+                        <span
+                            class="header-action-icon"
+                            aria-hidden="true"
+                        >
+                            ✉️
+                        </span>
+
+                        <span
+                            id="messageBadge"
+                            class="notification-badge"
+                            hidden
+                        >
+                            0
+                        </span>
+
+                    </button>
+
+
+                    <!-- Teacher Account -->
+                    <button
+                        id="teacherAccountBtn"
+                        class="teacher-account"
+                        type="button"
+                        aria-label="Open teacher account menu"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                        data-action="account-menu"
+                    >
+
+                        <span
+                            id="teacherAvatar"
+                            class="teacher-avatar"
+                        >
+                            👨‍🏫
+                        </span>
+
+                        <span class="teacher-account-info">
+
+                            <strong
+                                id="teacherName"
+                                class="teacher-name"
+                            >
+                                Loading...
+                            </strong>
+
+                            <span
+                                id="teacherRole"
+                                class="teacher-role"
+                            >
+                                Teacher
+                            </span>
+
+                        </span>
+
+                        <span
+                            class="account-chevron"
+                            aria-hidden="true"
+                        >
+                           ⌄
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- ==================================================
+                 ACCOUNT MENU
+                 ================================================== -->
+
+            <div
+                id="accountMenu"
+                class="account-menu"
+                hidden
+            >
+
+                <a
+                    href="teacher-profile.html"
+                    class="account-menu-item"
+                >
+                    👤
+                    <span>Teacher Profile</span>
+                </a>
+
+                <a
+                    href="teacher-settings.html"
+                    class="account-menu-item"
+                >
+                    ⚙️
+                    <span>Settings</span>
+                </a>
+
+                <button
+                    type="button"
+                    class="account-menu-item"
+                    data-action="logout"
+                >
+                    ↪
+                    <span>Logout</span>
+                </button>
+
+            </div>
+
+
+                        <!-- ==================================================
+                 DASHBOARD CONTENT
+                 ================================================== -->
+
+            <div class="dashboard-container">
+
+                <!-- ==================================================
+                     PAGE INTRO
+                     ================================================== -->
+
+                <section
+                    class="dashboard-welcome"
+                    aria-labelledby="dashboardWelcomeTitle"
+                >
+
+                    <div class="welcome-content">
+
+                        <span class="welcome-eyebrow">
+                            Teacher Workspace
+                        </span>
+
+                        <h1 id="dashboardWelcomeTitle">
+                            Welcome back,
+                            <span id="welcomeTeacherName">
+                                Teacher
+                            </span>! 👋
+                        </h1>
+
+                        <p>
+                            Here's what's happening in your classes today.
+                        </p>
+
+                    </div>
+
+
+                    <div class="welcome-actions">
+
+                        <button
+                            type="button"
+                            class="dashboard-filter"
+                            id="dashboardDateFilter"
+                            data-action="date-filter"
+                        >
+                            <span aria-hidden="true">📅</span>
+                            <span>This Week</span>
+                            <span aria-hidden="true">⌄</span>
+                        </button>
+
+
+                        <button
+                            type="button"
+                            class="create-new-button"
+                            id="createNewBtn"
+                            data-action="create-new"
+                        >
+                            <span aria-hidden="true">＋</span>
+                            <span>Create New</span>
+                            <span aria-hidden="true">⌄</span>
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==================================================
+                     QUICK CREATE MENU
+                     ================================================== -->
+
+                <div
+                    id="createNewMenu"
+                    class="create-new-menu"
+                    hidden
+                >
+
+                    <a
+                        href="ai-resources.html"
+                        class="create-menu-item"
+                    >
+                        <span class="create-menu-icon">
+                            ✨
+                        </span>
+
+                        <span>
+                            <strong>Create Resource</strong>
+                            <small>Generate AI-powered teaching materials</small>
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="ai-assessments.html"
+                        class="create-menu-item"
+                    >
+                        <span class="create-menu-icon">
+                            📝
+                        </span>
+
+                        <span>
+                            <strong>Create Assessment</strong>
+                            <small>Generate quizzes, tests and exams</small>
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="assignments.html"
+                        class="create-menu-item"
+                    >
+                        <span class="create-menu-icon">
+                            📋
+                        </span>
+
+                        <span>
+                            <strong>Create Assignment</strong>
+                            <small>Prepare work for your students</small>
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="announcements.html"
+                        class="create-menu-item"
+                    >
+                        <span class="create-menu-icon">
+                            📢
+                        </span>
+
+                        <span>
+                            <strong>Send Announcement</strong>
+                            <small>Notify your students and classes</small>
+                        </span>
+                    </a>
+
+                </div>
+
+
+                <!-- ==================================================
+                     OVERVIEW STATISTICS
+                     ================================================== -->
+
+                <section
+                    class="dashboard-stats"
+                    aria-label="Teacher dashboard statistics"
+                >
+
+                    <!-- Total Students -->
+
+                    <article class="stat-card stat-card-purple">
+
+                        <div class="stat-card-top">
+
+                            <div class="stat-icon">
+                                👥
+                            </div>
+
+                            <span class="stat-trend positive">
+                                +12 this week
+                            </span>
+
+                        </div>
+
+                        <div class="stat-content">
+
+                            <span class="stat-label">
+                                Total Students
+                            </span>
+
+                            <strong
+                                id="totalStudents"
+                                class="stat-value"
+                            >
+                                0
+                            </strong>
+
+                            <span class="stat-description">
+                                Students across your classes
+                            </span>
+
+                        </div>
+
+                        <div class="stat-chart stat-chart-students">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- Total Classes -->
+
+                    <article class="stat-card stat-card-blue">
+
+                        <div class="stat-card-top">
+
+                            <div class="stat-icon">
+                                📚
+                            </div>
+
+                            <span class="stat-trend positive">
+                                Active
+                            </span>
+
+                        </div>
+
+                        <div class="stat-content">
+
+                            <span class="stat-label">
+                                Total Classes
+                            </span>
+
+                            <strong
+                                id="totalClasses"
+                                class="stat-value"
+                            >
+                                0
+                            </strong>
+
+                            <span class="stat-description">
+                                Active classes
+                            </span>
+
+                        </div>
+
+                        <div class="stat-chart stat-chart-classes">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- Assessments -->
+
+                    <article class="stat-card stat-card-green">
+
+                        <div class="stat-card-top">
+
+                            <div class="stat-icon">
+                                📝
+                            </div>
+
+                            <span class="stat-trend positive">
+                                +5 this week
+                            </span>
+
+                        </div>
+
+                        <div class="stat-content">
+
+                            <span class="stat-label">
+                                Assessments
+                            </span>
+
+                            <strong
+                                id="totalAssessments"
+                                class="stat-value"
+                            >
+                                0
+                            </strong>
+
+                            <span class="stat-description">
+                                Created this term
+                            </span>
+
+                        </div>
+
+                        <div class="stat-chart stat-chart-assessments">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- Average Score -->
+
+                    <article class="stat-card stat-card-orange">
+
+                        <div class="stat-card-top">
+
+                            <div class="stat-icon">
+                                🏆
+                            </div>
+
+                            <span class="stat-trend positive">
+                                +8% this week
+                            </span>
+
+                        </div>
+
+                        <div class="stat-content">
+
+                            <span class="stat-label">
+                                Average Score
+                            </span>
+
+                            <strong
+                                id="averageScore"
+                                class="stat-value"
+                            >
+                                0%
+                            </strong>
+
+                            <span class="stat-description">
+                                Across your assessments
+                            </span>
+
+                        </div>
+
+                        <div class="stat-chart stat-chart-score">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                    </article>
+
+
+                    <!-- Total Reach -->
+
+                    <article class="stat-card stat-card-cyan">
+
+                        <div class="stat-card-top">
+
+                            <div class="stat-icon">
+                                👁️
+                            </div>
+
+                            <span class="stat-trend positive">
+                                This week
+                            </span>
+
+                        </div>
+
+                        <div class="stat-content">
+
+                            <span class="stat-label">
+                                Total Reach
+                            </span>
+
+                            <strong
+                                id="totalReach"
+                                class="stat-value"
+                            >
+                                0
+                            </strong>
+
+                            <span class="stat-description">
+                                Students notified
+                            </span>
+
+                        </div>
+
+                        <div class="stat-chart stat-chart-reach">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+
+                    </article>
+
+                </section>
+
+
+                <!-- ==================================================
+                     QUICK ACTIONS
+                     ================================================== -->
+
+                <section
+                    class="dashboard-section quick-actions-section"
+                    aria-labelledby="quickActionsTitle"
+                >
+
+                    <div class="section-header">
+
+                        <div>
+                            <span class="section-eyebrow">
+                                Productivity
+                            </span>
+
+                            <h2 id="quickActionsTitle">
+                                Quick Actions
+                            </h2>
+                        </div>
+
+                    </div>
+
+
+                    <div class="quick-actions-grid">
+
+                        <a
+                            href="ai-resources.html"
+                            class="quick-action-card"
+                            data-action-card="resource"
+                        >
+                            <span class="quick-action-icon purple">
+                                ✨
+                            </span>
+
+                            <span class="quick-action-content">
+                                <strong>Create Resource</strong>
+                                <small>AI-powered teaching materials</small>
+                            </span>
+                        </a>
+
+
+                        <a
+                            href="ai-assessments.html"
+                            class="quick-action-card"
+                            data-action-card="assessment"
+                        >
+                            <span class="quick-action-icon blue">
+                                📝
+                            </span>
+
+                            <span class="quick-action-content">
+                                <strong>Create Assessment</strong>
+                                <small>Quiz, test or examination</small>
+                            </span>
+                        </a>
+
+
+                        <a
+                            href="results-reports.html"
+                            class="quick-action-card"
+                            data-action-card="results"
+                        >
+                            <span class="quick-action-icon green">
+                                📊
+                            </span>
+
+                            <span class="quick-action-content">
+                                <strong>View Results</strong>
+                                <small>Analyze student performance</small>
+                            </span>
+                        </a>
+
+
+                        <a
+                            href="assignments.html"
+                            class="quick-action-card"
+                            data-action-card="assignment"
+                        >
+                            <span class="quick-action-icon orange">
+                                📋
+                            </span>
+
+                            <span class="quick-action-content">
+                                <strong>Add Assignment</strong>
+                                <small>Create student assignments</small>
+                            </span>
+                        </a>
+
+
+                        <a
+                            href="study-plans.html"
+                            class="quick-action-card"
+                            data-action-card="study-plan"
+                        >
+                            <span class="quick-action-icon purple">
+                                🎯
+                            </span>
+
+                            <span class="quick-action-content">
+                                <strong>Study Plan</strong>
+                                <small>Build structured learning plans</small>
+                            </span>
+                        </a>
+
+
+                        <a
+                            href="announcements.html"
+                            class="quick-action-card"
+                            data-action-card="announcement"
+                        >
+                            <span class="quick-action-icon blue">
+                                📢
+                            </span>
+
+                            <span class="quick-action-content">
+                                <strong>Send Announcement</strong>
+                                <small>Reach your students quickly</small>
+                            </span>
+                        </a>
+
+
+                        <a
+                            href="ai-teaching-assistant.html"
+                            class="quick-action-card"
+                            data-action-card="assistant"
+                        >
+                            <span class="quick-action-icon purple">
+                                🤖
+                            </span>
+
+                            <span class="quick-action-content">
+                                <strong>AI Teaching Assistant</strong>
+                                <small>Get teaching advice instantly</small>
+                            </span>
+                        </a>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ==================================================
+                     MAIN DASHBOARD GRID
+                     ================================================== -->
+
+                <div class="dashboard-main-grid">
+
+
+                                        <!-- ==================================================
+                         CLASS OVERVIEW
+                         ================================================== -->
+
+                    <section
+                        class="dashboard-panel class-overview-panel"
+                        aria-labelledby="classOverviewTitle"
+                    >
+
+                        <div class="panel-header">
+
+                            <div>
+                                <span class="panel-eyebrow">
+                                    Your Classes
+                                </span>
+
+                                <h2 id="classOverviewTitle">
+                                    Class Overview
+                                </h2>
+                            </div>
+
+                            <a
+                                href="my-classes.html"
+                                class="panel-link"
+                            >
+                                View All Classes
+                                <span aria-hidden="true">→</span>
+                            </a>
+
+                        </div>
+
+
+                        <div
+                            id="classOverviewTable"
+                            class="class-overview-table"
+                        >
+
+                            <div class="table-header">
+
+                                <span>Class</span>
+                                <span>Students</span>
+                                <span>Average Score</span>
+                                <span>Trend</span>
+                                <span>Action</span>
+
+                            </div>
+
+
+                            <!-- Class Row -->
+
+                            <div class="class-row">
+
+                                <div class="class-name-cell">
+
+                                    <span class="class-badge purple">
+                                        J
+                                    </span>
+
+                                    <span>
+                                        <strong>JSS 2A</strong>
+                                        <small>Mathematics</small>
+                                    </span>
+
+                                </div>
+
+                                <span class="class-students">
+                                    28
+                                </span>
+
+                                <strong class="class-score">
+                                    78%
+                                </strong>
+
+                                <span class="class-trend positive">
+                                    +6%
+                                </span>
+
+                                <a
+                                    href="my-classes.html"
+                                    class="table-action"
+                                    data-class-id="jss2a"
+                                >
+                                    View Class
+                                </a>
+
+                            </div>
+
+
+                            <div class="class-row">
+
+                                <div class="class-name-cell">
+
+                                    <span class="class-badge blue">
+                                        J
+                                    </span>
+
+                                    <span>
+                                        <strong>JSS 2B</strong>
+                                        <small>Mathematics</small>
+                                    </span>
+
+                                </div>
+
+                                <span class="class-students">
+                                    26
+                                </span>
+
+                                <strong class="class-score">
+                                    71%
+                                </strong>
+
+                                <span class="class-trend positive">
+                                    +4%
+                                </span>
+
+                                <a
+                                    href="my-classes.html"
+                                    class="table-action"
+                                    data-class-id="jss2b"
+                                >
+                                    View Class
+                                </a>
+
+                            </div>
+
+
+                            <div class="class-row">
+
+                                <div class="class-name-cell">
+
+                                    <span class="class-badge green">
+                                        J
+                                    </span>
+
+                                    <span>
+                                        <strong>JSS 3A</strong>
+                                        <small>Mathematics</small>
+                                    </span>
+
+                                </div>
+
+                                <span class="class-students">
+                                    25
+                                </span>
+
+                                <strong class="class-score">
+                                    68%
+                                </strong>
+
+                                <span class="class-trend positive">
+                                    +2%
+                                </span>
+
+                                <a
+                                    href="my-classes.html"
+                                    class="table-action"
+                                    data-class-id="jss3a"
+                                >
+                                    View Class
+                                </a>
+
+                            </div>
+
+
+                            <div class="class-row">
+
+                                <div class="class-name-cell">
+
+                                    <span class="class-badge orange">
+                                        S
+                                    </span>
+
+                                    <span>
+                                        <strong>SSS 1A</strong>
+                                        <small>Mathematics</small>
+                                    </span>
+
+                                </div>
+
+                                <span class="class-students">
+                                    27
+                                </span>
+
+                                <strong class="class-score">
+                                    74%
+                                </strong>
+
+                                <span class="class-trend positive">
+                                    +7%
+                                </span>
+
+                                <a
+                                    href="my-classes.html"
+                                    class="table-action"
+                                    data-class-id="sss1a"
+                                >
+                                    View Class
+                                </a>
+
+                            </div>
+
+
+                            <div class="class-row">
+
+                                <div class="class-name-cell">
+
+                                    <span class="class-badge red">
+                                        S
+                                    </span>
+
+                                    <span>
+                                        <strong>SSS 2A</strong>
+                                        <small>Mathematics</small>
+                                    </span>
+
+                                </div>
+
+                                <span class="class-students">
+                                    25
+                                </span>
+
+                                <strong class="class-score">
+                                    69%
+                                </strong>
+
+                                <span class="class-trend positive">
+                                    +3%
+                                </span>
+
+                                <a
+                                    href="my-classes.html"
+                                    class="table-action"
+                                    data-class-id="sss2a"
+                                >
+                                    View Class
+                                </a>
+
+                            </div>
+
+
+                            <div class="class-row">
+
+                                <div class="class-name-cell">
+
+                                    <span class="class-badge cyan">
+                                        S
+                                    </span>
+
+                                    <span>
+                                        <strong>SSS 3A</strong>
+                                        <small>Mathematics</small>
+                                    </span>
+
+                                </div>
+
+                                <span class="class-students">
+                                    25
+                                </span>
+
+                                <strong class="class-score">
+                                    70%
+                                </strong>
+
+                                <span class="class-trend positive">
+                                    +5%
+                                </span>
+
+                                <a
+                                    href="my-classes.html"
+                                    class="table-action"
+                                    data-class-id="sss3a"
+                                >
+                                    View Class
+                                </a>
+
+                            </div>
+
+
+                            <!-- Total -->
+
+                            <div class="class-row class-total-row">
+
+                                <strong>
+                                    Total
+                                </strong>
+
+                                <strong id="classTotalStudents">
+                                    156
+                                </strong>
+
+                                <strong id="classTotalScore">
+                                    72%
+                                </strong>
+
+                                <span class="class-trend positive">
+                                    +5%
+                                </span>
+
+                                <span></span>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- ==================================================
+                         PERFORMANCE OVERVIEW
+                         ================================================== -->
+
+                    <section
+                        class="dashboard-panel performance-panel"
+                        aria-labelledby="performanceTitle"
+                    >
+
+                        <div class="panel-header">
+
+                            <div>
+                                <span class="panel-eyebrow">
+                                    Student Analytics
+                                </span>
+
+                                <h2 id="performanceTitle">
+                                    Performance Overview
+                                </h2>
+                            </div>
+
+                            <select
+                                id="performancePeriod"
+                                class="panel-select"
+                                aria-label="Performance period"
+                                data-action="performance-period"
+                            >
+                                <option value="week">
+                                    This Week
+                                </option>
+
+                                <option value="month">
+                                    This Month
+                                </option>
+
+                                <option value="term">
+                                    This Term
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <!-- Performance Distribution -->
+
+                        <div class="performance-summary">
+
+                            <div
+                                class="performance-donut"
+                                id="performanceDonut"
+                                aria-label="72 percent average score"
+                            >
+
+                                <div class="donut-center">
+
+                                    <strong id="performanceAverage">
+                                        72%
+                                    </strong>
+
+                                    <span>
+                                        Average Score
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="performance-legend">
+
+                                <div class="legend-item">
+
+                                    <span class="legend-dot excellent"></span>
+
+                                    <span>
+                                        Excellent
+                                        <small>80–100%</small>
+                                    </span>
+
+                                    <strong>34%</strong>
+
+                                </div>
+
+
+                                <div class="legend-item">
+
+                                    <span class="legend-dot good"></span>
+
+                                    <span>
+                                        Good
+                                        <small>60–79%</small>
+                                    </span>
+
+                                    <strong>38%</strong>
+
+                                </div>
+
+
+                                <div class="legend-item">
+
+                                    <span class="legend-dot average"></span>
+
+                                    <span>
+                                        Average
+                                        <small>40–59%</small>
+                                    </span>
+
+                                    <strong>18%</strong>
+
+                                </div>
+
+
+                                <div class="legend-item">
+
+                                    <span class="legend-dot needs-improvement"></span>
+
+                                    <span>
+                                        Needs Improvement
+                                        <small>0–39%</small>
+                                    </span>
+
+                                    <strong>10%</strong>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Score Trend -->
+
+                        <div class="score-trend-section">
+
+                            <div class="chart-header">
+
+                                <h3>
+                                    Score Trend
+                                </h3>
+
+                                <a
+                                    href="results-reports.html"
+                                    class="chart-link"
+                                >
+                                    View Full Report
+                                    <span aria-hidden="true">→</span>
+                                </a>
+
+                            </div>
+
+
+                            <div
+                                class="score-chart"
+                                id="scoreTrendChart"
+                                role="img"
+                                aria-label="Weekly student score trend"
+                            >
+
+                                <div class="chart-y-axis">
+
+                                    <span>100%</span>
+                                    <span>75%</span>
+                                    <span>50%</span>
+                                    <span>25%</span>
+                                    <span>0%</span>
+
+                                </div>
+
+
+                                <div class="chart-area">
+
+                                    <div class="chart-grid">
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                        <span></span>
+                                    </div>
+
+
+                                    <svg
+                                        class="trend-line"
+                                        viewBox="0 0 700 220"
+                                        preserveAspectRatio="none"
+                                        aria-hidden="true"
+                                    >
+
+                                        <polyline
+                                            points="
+                                                20,135
+                                                130,112
+                                                240,85
+                                                350,110
+                                                460,60
+                                                570,92
+                                                680,78
+                                            "
+                                        />
+
+                                        <circle
+                                            cx="20"
+                                            cy="135"
+                                            r="5"
+                                        />
+
+                                        <circle
+                                            cx="130"
+                                            cy="112"
+                                            r="5"
+                                        />
+
+                                        <circle
+                                            cx="240"
+                                            cy="85"
+                                            r="5"
+                                        />
+
+                                        <circle
+                                            cx="350"
+                                            cy="110"
+                                            r="5"
+                                        />
+
+                                        <circle
+                                            cx="460"
+                                            cy="60"
+                                            r="5"
+                                        />
+
+                                        <circle
+                                            cx="570"
+                                            cy="92"
+                                            r="5"
+                                        />
+
+                                        <circle
+                                            cx="680"
+                                            cy="78"
+                                            r="5"
+                                        />
+
+                                    </svg>
+
+
+                                                                        <div class="chart-x-axis">
+
+                                        <span>Mon</span>
+                                        <span>Tue</span>
+                                        <span>Wed</span>
+                                        <span>Thu</span>
+                                        <span>Fri</span>
+                                        <span>Sat</span>
+                                        <span>Sun</span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- ==================================================
+                         SECOND DASHBOARD GRID
+                         ================================================== -->
+
+                    <div class="dashboard-secondary-grid">
+
+
+                        <!-- ==================================================
+                             RECENT ASSESSMENTS
+                             ================================================== -->
+
+                        <section
+                            class="dashboard-panel assessments-panel"
+                            aria-labelledby="recentAssessmentsTitle"
+                        >
+
+                            <div class="panel-header">
+
+                                <div>
+
+                                    <span class="panel-eyebrow">
+                                        Assessments
+                                    </span>
+
+                                    <h2 id="recentAssessmentsTitle">
+                                        Recent Assessments
+                                    </h2>
+
+                                </div>
+
+                                <a
+                                    href="ai-assessments.html"
+                                    class="panel-link"
+                                >
+                                    View All Assessments
+                                    <span aria-hidden="true">→</span>
+                                </a>
+
+                            </div>
+
+
+                            <div class="assessment-table">
+
+                                <div class="table-header">
+
+                                    <span>Assessment</span>
+                                    <span>Class</span>
+                                    <span>Type</span>
+                                    <span>Average Score</span>
+                                    <span>Completed</span>
+                                    <span>Action</span>
+
+                                </div>
+
+
+                                <div class="assessment-row">
+
+                                    <div class="assessment-name">
+
+                                        <span class="assessment-icon purple">
+                                            📝
+                                        </span>
+
+                                        <strong>
+                                            Linear Equations Test
+                                        </strong>
+
+                                    </div>
+
+                                    <span>JSS 2A</span>
+
+                                    <span>Test</span>
+
+                                    <strong>78%</strong>
+
+                                    <span>28/28</span>
+
+                                    <a
+                                        href="results-reports.html"
+                                        class="table-action"
+                                    >
+                                        View Results
+                                    </a>
+
+                                </div>
+
+
+                                <div class="assessment-row">
+
+                                    <div class="assessment-name">
+
+                                        <span class="assessment-icon green">
+                                            🧮
+                                        </span>
+
+                                        <strong>
+                                            Fractions Quiz
+                                        </strong>
+
+                                    </div>
+
+                                    <span>JSS 2B</span>
+
+                                    <span>Quiz</span>
+
+                                    <strong>71%</strong>
+
+                                    <span>26/26</span>
+
+                                    <a
+                                        href="results-reports.html"
+                                        class="table-action"
+                                    >
+                                        View Results
+                                    </a>
+
+                                </div>
+
+
+                                <div class="assessment-row">
+
+                                    <div class="assessment-name">
+
+                                        <span class="assessment-icon blue">
+                                            📘
+                                        </span>
+
+                                        <strong>
+                                            Word Problems Assignment
+                                        </strong>
+
+                                    </div>
+
+                                    <span>JSS 3A</span>
+
+                                    <span>Assignment</span>
+
+                                    <strong>68%</strong>
+
+                                    <span>25/25</span>
+
+                                    <a
+                                        href="results-reports.html"
+                                        class="table-action"
+                                    >
+                                        View Results
+                                    </a>
+
+                                </div>
+
+
+                                <div class="assessment-row">
+
+                                    <div class="assessment-name">
+
+                                        <span class="assessment-icon orange">
+                                            ➗
+                                        </span>
+
+                                        <strong>
+                                            Quadratic Equations Test
+                                        </strong>
+
+                                    </div>
+
+                                    <span>SSS 1A</span>
+
+                                    <span>Test</span>
+
+                                    <strong>74%</strong>
+
+                                    <span>27/27</span>
+
+                                    <a
+                                        href="results-reports.html"
+                                        class="table-action"
+                                    >
+                                        View Results
+                                    </a>
+
+                                </div>
+
+
+                                <div class="assessment-row">
+
+                                    <div class="assessment-name">
+
+                                        <span class="assessment-icon red">
+                                            📐
+                                        </span>
+
+                                        <strong>
+                                            Indices and Surds Quiz
+                                        </strong>
+
+                                    </div>
+
+                                    <span>SSS 2A</span>
+
+                                    <span>Quiz</span>
+
+                                    <strong>69%</strong>
+
+                                    <span>24/25</span>
+
+                                    <a
+                                        href="results-reports.html"
+                                        class="table-action"
+                                    >
+                                        View Results
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- ==================================================
+                             TOP PERFORMERS
+                             ================================================== -->
+
+                        <section
+                            class="dashboard-panel performers-panel"
+                            aria-labelledby="topPerformersTitle"
+                        >
+
+                            <div class="panel-header">
+
+                                <div>
+
+                                    <span class="panel-eyebrow">
+                                        Student Success
+                                    </span>
+
+                                    <h2 id="topPerformersTitle">
+                                        Top Performers
+                                    </h2>
+
+                                </div>
+
+                                <a
+                                    href="students.html"
+                                    class="panel-link"
+                                >
+                                    View Students
+                                    <span aria-hidden="true">→</span>
+                                </a>
+
+                            </div>
+
+
+                            <div
+                                id="topPerformersList"
+                                class="top-performers-list"
+                            >
+
+                                <div class="performer-row">
+
+                                    <span class="performer-rank gold">
+                                        1
+                                    </span>
+
+                                    <span class="performer-avatar">
+                                        👩🏽‍🎓
+                                    </span>
+
+                                    <div class="performer-info">
+
+                                        <strong>
+                                            Aisha Bello
+                                        </strong>
+
+                                        <small>
+                                            JSS 2A
+                                        </small>
+
+                                    </div>
+
+                                    <strong class="performer-score">
+                                        92%
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="performer-row">
+
+                                    <span class="performer-rank silver">
+                                        2
+                                    </span>
+
+                                    <span class="performer-avatar">
+                                        👨🏽‍🎓
+                                    </span>
+
+                                    <div class="performer-info">
+
+                                        <strong>
+                                            Ibrahim Usman
+                                        </strong>
+
+                                        <small>
+                                            SSS 1A
+                                        </small>
+
+                                    </div>
+
+                                    <strong class="performer-score">
+                                        89%
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="performer-row">
+
+                                    <span class="performer-rank bronze">
+                                        3
+                                    </span>
+
+                                    <span class="performer-avatar">
+                                        👩🏽‍🎓
+                                    </span>
+
+                                    <div class="performer-info">
+
+                                        <strong>
+                                            Fatima Aliyu
+                                        </strong>
+
+                                        <small>
+                                            JSS 3A
+                                        </small>
+
+                                    </div>
+
+                                    <strong class="performer-score">
+                                        87%
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="performer-row">
+
+                                    <span class="performer-rank">
+                                        4
+                                    </span>
+
+                                    <span class="performer-avatar">
+                                        👨🏽‍🎓
+                                    </span>
+
+                                    <div class="performer-info">
+
+                                        <strong>
+                                            John Samuel
+                                        </strong>
+
+                                        <small>
+                                            SSS 2A
+                                        </small>
+
+                                    </div>
+
+                                    <strong class="performer-score">
+                                        85%
+                                    </strong>
+
+                                </div>
+
+
+                                <div class="performer-row">
+
+                                    <span class="performer-rank">
+                                        5
+                                    </span>
+
+                                    <span class="performer-avatar">
+                                        👩🏽‍🎓
+                                    </span>
+
+                                    <div class="performer-info">
+
+                                        <strong>
+                                            Maryam Abdul
+                                        </strong>
+
+                                        <small>
+                                            JSS 2B
+                                        </small>
+
+                                    </div>
+
+                                    <strong class="performer-score">
+                                        84%
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+
+                    <!-- ==================================================
+                         RIGHT-SIDE DASHBOARD INFORMATION
+                         ================================================== -->
+
+                    <div class="dashboard-insights-grid">
+
+
+                        <!-- ==================================================
+                             UPCOMING ACTIVITIES
+                             ================================================== -->
+
+                        <section
+                            class="dashboard-panel activities-panel"
+                            aria-labelledby="upcomingActivitiesTitle"
+                        >
+
+                            <div class="panel-header">
+
+                                <div>
+
+                                    <span class="panel-eyebrow">
+                                        Schedule
+                                    </span>
+
+                                    <h2 id="upcomingActivitiesTitle">
+                                        Upcoming Activities
+                                    </h2>
+
+                                </div>
+
+                                <a
+                                    href="study-plans.html"
+                                    class="panel-link"
+                                >
+                                    View Calendar
+                                    <span aria-hidden="true">→</span>
+                                </a>
+
+                            </div>
+
+
+                            <div
+                                id="upcomingActivities"
+                                class="activity-list"
+                            >
+
+                                <article class="activity-item">
+
+                                    <span class="activity-icon purple">
+                                        📅
+                                    </span>
+
+                                    <div class="activity-content">
+
+                                        <strong>
+                                            Mid-Term Test
+                                        </strong>
+
+                                        <small>
+                                            JSS 2A
+                                        </small>
+
+                                    </div>
+
+                                    <time datetime="2026-05-30">
+                                        May 30
+                                    </time>
+
+                                </article>
+
+
+                                <article class="activity-item">
+
+                                    <span class="activity-icon green">
+                                        📗
+                                    </span>
+
+                                    <div class="activity-content">
+
+                                        <strong>
+                                            Fractions Assignment
+                                        </strong>
+
+                                        <small>
+                                            JSS 2B
+                                        </small>
+
+                                    </div>
+
+                                    <time datetime="2026-05-31">
+                                        May 31
+                                    </time>
+
+                                </article>
+
+
+                                <article class="activity-item">
+
+                                    <span class="activity-icon blue">
+                                        📝
+                                    </span>
+
+                                    <div class="activity-content">
+
+                                        <strong>
+                                            Linear Equations Quiz
+                                        </strong>
+
+                                        <small>
+                                            JSS 3A
+                                        </small>
+
+                                    </div>
+
+                                    <time datetime="2026-06-01">
+                                        Jun 1
+                                    </time>
+
+                                </article>
+
+
+                                <article class="activity-item">
+
+                                    <span class="activity-icon orange">
+                                        📋
+                                    </span>
+
+                                    <div class="activity-content">
+
+                                        <strong>
+                                            Class Test
+                                        </strong>
+
+                                        <small>
+                                            SSS 1A
+                                        </small>
+
+                                    </div>
+
+                                    <time datetime="2026-06-03">
+                                        Jun 3
+                                    </time>
+
+                                </article>
+
+
+                                <article class="activity-item">
+
+                                    <span class="activity-icon purple">
+                                        🎯
+                                    </span>
+
+                                    <div class="activity-content">
+
+                                        <strong>
+                                            Study Plan Review
+                                        </strong>
+
+                                        <small>
+                                            SSS 2A
+                                        </small>
+
+                                    </div>
+
+                                    <time datetime="2026-06-04">
+                                        Jun 4
+                                    </time>
+
+                                </article>
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- ==================================================
+                             RECENT ANNOUNCEMENTS
+                             ================================================== -->
+
+                        <section
+                            class="dashboard-panel announcements-panel"
+                            aria-labelledby="recentAnnouncementsTitle"
+                        >
+
+                            <div class="panel-header">
+
+                                <div>
+
+                                    <span class="panel-eyebrow">
+                                        Communication
+                                    </span>
+
+                                    <h2 id="recentAnnouncementsTitle">
+                                        Recent Announcements
+                                    </h2>
+
+                                </div>
+
+                                <a
+                                    href="announcements.html"
+                                    class="panel-link"
+                                >
+                                    View All
+                                    <span aria-hidden="true">→</span>
+                                </a>
+
+                            </div>
+
+
+                            <div
+                                id="recentAnnouncements"
+                                class="announcement-list"
+                            >
+
+                                <article class="announcement-item">
+
+                                    <span class="announcement-icon purple">
+                                        📢
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Mid-term test next Monday
+                                        </strong>
+
+                                        <time datetime="2026-05-24">
+                                            May 24, 2026
+                                        </time>
+
+                                    </div>
+
+                                </article>
+
+
+                                <article class="announcement-item">
+
+                                    <span class="announcement-icon green">
+                                        📚
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            New assignment posted
+                                        </strong>
+
+                                        <time datetime="2026-05-22">
+                                            May 22, 2026
+                                        </time>
+
+                                    </div>
+
+                                </article>
+
+
+                                <article class="announcement-item">
+
+                                    <span class="announcement-icon blue">
+                                        📊
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Quiz results released
+                                        </strong>
+
+                                        <time datetime="2026-05-21">
+                                            May 21, 2026
+                                        </time>
+
+                                    </div>
+
+                                </article>
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- ==================================================
+                             AI INSIGHTS
+                             ================================================== -->
+
+                        <section
+                            class="dashboard-panel ai-insights-panel"
+                            aria-labelledby="aiInsightsTitle"
+                        >
+
+                            <div class="panel-header">
+
+                                <div>
+
+                                    <span class="panel-eyebrow">
+                                        AI-Powered
+                                    </span>
+
+                                    <h2 id="aiInsightsTitle">
+                                        AI Insights
+                                    </h2>
+
+                                </div>
+
+                                <a
+                                    href="ai-teaching-assistant.html"
+                                    class="panel-link"
+                                >
+                                    View All
+                                    <span aria-hidden="true">→</span>
+                                </a>
+
+                            </div>
+
+
+                            <div
+                                id="aiInsights"
+                                class="ai-insights-list"
+                            >
+
+                                <article class="ai-insight-item">
+
+                                    <span class="ai-insight-icon green">
+                                        💡
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            JSS 2B needs more practice
+                                        </strong>
+
+                                        <p>
+                                            Students are struggling with
+                                            fractions. Consider additional
+                                            practice activities.
+                                        </p>
+
+                                    </div>
+
+                                </article>
+
+
+                                <article class="ai-insight-item">
+
+                                    <span class="ai-insight-icon orange">
+                                        📈
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            SSS 1A is improving
+                                        </strong>
+
+                                        <p>
+                                            Students showed strong improvement
+                                            in linear equations this week.
+                                        </p>
+
+                                    </div>
+
+                                </article>
+
+
+                                <article class="ai-insight-item">
+
+                                    <span class="ai-insight-icon purple">
+                                        📢
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            High engagement this week
+                                        </strong>
+
+                                        <p>
+                                            Your students are interacting more
+                                            with your learning materials.
+                                        </p>
+
+                                    </div>
+
+                                </article>
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+
+                    <!-- ==================================================
+                         AI TEACHER TOOLS
+                         ================================================== -->
+
+                    <section
+                        class="dashboard-section teacher-ai-tools-section"
+                        aria-labelledby="teacherAiToolsTitle"
+                    >
+
+                        <div class="section-header">
+
+                            <div>
+
+                                <span class="section-eyebrow">
+                                    AI-Powered Teaching
+                                </span>
+
+                                <h2 id="teacherAiToolsTitle">
+                                    Teacher AI Tools
+                                </h2>
+
+                                <p>
+                                    Create, teach, assess and understand your
+                                    students with AI assistance.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="teacher-ai-tools-grid">
+
+
+                            <!-- AI Resource Creation -->
+
+                            <a
+                                href="ai-resources.html"
+                                class="teacher-ai-tool-card"
+                            >
+
+                                <div class="teacher-ai-tool-icon purple">
+                                    ✨
+                                </div>
+
+                                <div class="teacher-ai-tool-content">
+
+                                    <span class="tool-label">
+                                        CREATE
+                                    </span>
+
+                                    <h3>
+                                        AI Resource Creation
+                                    </h3>
+
+                                    <p>
+                                        Generate lesson notes, teaching
+                                        materials, examples, summaries and
+                                        classroom resources.
+                                    </p>
+
+                                    <span class="tool-action">
+                                        Create Resource
+                                        <span aria-hidden="true">→</span>
+                                    </span>
+
+                                </div>
+
+                            </a>
+
+
+                            <!-- AI Assessment -->
+
+                            <a
+                                href="ai-assessments.html"
+                                class="teacher-ai-tool-card"
+                            >
+
+                                <div class="teacher-ai-tool-icon blue">
+                                    📝
+                                </div>
+
+                                <div class="teacher-ai-tool-content">
+
+                                    <span class="tool-label">
+                                        ASSESS
+                                    </span>
+
+                                    <h3>
+                                        AI Assessment
+                                    </h3>
+
+                                    <p>
+                                        Create quizzes, tests and examinations
+                                        based on class, subject, topic and
+                                        difficulty.
+                                    </p>
+
+                                    <span class="tool-action">
+                                        Create Assessment
+                                        <span aria-hidden="true">→</span>
+                                    </span>
+
+                                </div>
+
+                            </a>
+
+
+                            <!-- Teaching Assistant -->
+
+                            <a
+                                href="ai-teaching-assistant.html"
+                                class="teacher-ai-tool-card"
+                            >
+
+                                <div class="teacher-ai-tool-icon green">
+                                    🤖
+                                </div>
+
+                                <div class="teacher-ai-tool-content">
+
+                                    <span class="tool-label">
+                                        ASSIST
+                                    </span>
+
+                                    <h3>
+                                        Teaching Assistant AI
+                                    </h3>
+
+                                    <p>
+                                        Get teaching strategies, lesson ideas,
+                                        explanations and personalized teaching
+                                        advice.
+                                    </p>
+
+                                    <span class="tool-action">
+                                        Ask AI Assistant
+                                        <span aria-hidden="true">→</span>
+                                    </span>
+
+                                </div>
+
+                            </a>
+
+
+                            <!-- AI Student Insights -->
+
+                            <a
+                                href="results-reports.html"
+                                class="teacher-ai-tool-card"
+                            >
+
+                                <div class="teacher-ai-tool-icon orange">
+                                    📊
+                                </div>
+
+                                <div class="teacher-ai-tool-content">
+
+                                    <span class="tool-label">
+                                        ANALYZE
+                                    </span>
+
+                                    <h3>
+                                        AI Student Insights
+                                    </h3>
+
+                                    <p>
+                                        Identify learning gaps, performance
+                                        trends and students who need support.
+                                    </p>
+
+                                    <span class="tool-action">
+                                        Analyze Performance
+                                        <span aria-hidden="true">→</span>
+                                    </span>
+
+                                </div>
+
+                            </a>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- ==================================================
+                         TEACHER ACTIVITY
+                         ================================================== -->
+
+                    <section
+                        class="dashboard-section activity-summary-section"
+                        aria-labelledby="activitySummaryTitle"
+                    >
+
+                        <div class="section-header">
+
+                            <div>
+
+                                <span class="section-eyebrow">
+                                    Workspace Activity
+                                </span>
+
+                                <h2 id="activitySummaryTitle">
+                                    Recent Activity
+                                </h2>
+
+                            </div>
+
+                            <button
+                                type="button"
+                                class="text-button"
+                                id="viewAllActivityBtn"
+                                data-action="view-all-activity"
+                            >
+                                View Activity
+                                <span aria-hidden="true">→</span>
+                            </button>
+
+                        </div>
+
+
+                        <div
+                            id="recentActivity"
+                            class="recent-activity-list"
+                        >
+
+                            <article class="recent-activity-item">
+
+                                <span class="activity-status success">
+                                    ✓
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Created Linear Equations Quiz
+                                    </strong>
+
+                                    <p>
+                                        AI Assessment • JSS 2A
+                                    </p>
+
+                                </div>
+
+                                <time>
+                                    2 hours ago
+                                </time>
+
+                            </article>
+
+
+                            <article class="recent-activity-item">
+
+                                <span class="activity-status purple">
+                                    ✨
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Generated a lesson resource
+                                    </strong>
+
+                                    <p>
+                                        AI Resource Creation • Mathematics
+                                    </p>
+
+                                </div>
+
+                                <time>
+                                    5 hours ago
+                                </time>
+
+                            </article>
+
+
+                            <article class="recent-activity-item">
+
+                                <span class="activity-status blue">
+                                    📢
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Sent an announcement
+                                    </strong>
+
+                                    <p>
+                                        SSS 1A • 27 students notified
+                                    </p>
+
+                                </div>
+
+                                <time>
+                                    Yesterday
+                                </time>
+
+                            </article>
+
+
+                            <article class="recent-activity-item">
+
+                                <span class="activity-status orange">
+                                    📊
+                                </span>
+
+                                <div>
+
+                                    <strong>
+                                        Reviewed assessment results
+                                    </strong>
+
+                                    <p>
+                                        Fractions Quiz • JSS 2B
+                                    </p>
+
+                                </div>
+
+                                <time>
+                                    Yesterday
+                                </time>
+
+                            </article>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- ==================================================
+                         TEACHER SUPPORT CTA
+                         ================================================== -->
+
+                    <section
+                        class="teacher-support-card"
+                        aria-labelledby="teacherSupportTitle"
+                    >
+
+                        <div class="teacher-support-content">
+
+                            <span
+                                class="teacher-support-icon"
+                                aria-hidden="true"
+                            >
+                                🤖
+                            </span>
+
+                            <div>
+
+                                <span class="section-eyebrow">
+                                    Your AI Teaching Partner
+                                </span>
+
+                                <h2 id="teacherSupportTitle">
+                                    Need help with your teaching?
+                                </h2>
+
+                                <p>
+                                    Ask FREUMIA Teaching Assistant AI for lesson
+                                    ideas, explanations, classroom strategies,
+                                    assessment suggestions and personalized
+                                    teaching advice.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <a
+                            href="ai-teaching-assistant.html"
+                            class="teacher-support-button"
+                        >
+                            Ask AI Assistant
+                            <span aria-hidden="true">→</span>
+                        </a>
+
+                    </section>
+
+
+                    <!-- ==================================================
+                         DASHBOARD FOOTER
+                         ================================================== -->
+
+                    <footer class="dashboard-footer">
+
+                        <div class="dashboard-footer-brand">
+
+                            <strong>
+                                FREUMIA
+                            </strong>
+
+                            <span>
+                                Teacher AI
+                            </span>
+
+                        </div>
+
+
+                        <p>
+                            AI-powered tools for better teaching and
+                            stronger student outcomes.
+                        </p>
+
+
+                        <nav
+                            class="dashboard-footer-links"
+                            aria-label="Dashboard footer navigation"
+                        >
+
+                            <a href="teacher-profile.html">
+                                Profile
+                            </a>
+
+                            <a href="teacher-settings.html">
+                                Settings
+                            </a>
+
+                            <a href="resources-library.html">
+                                Resources
+                            </a>
+
+                            <a href="ai-teaching-assistant.html">
+                                AI Assistant
+                            </a>
+
+                        </nav>
+
+                    </footer>
+
+                </div>
+
+            </main>
+
+
+            <!-- ==========================================================
+                 GLOBAL NOTIFICATION PANEL
+                 ========================================================== -->
+
+            <div
+                id="notificationPanel"
+                class="floating-panel notification-panel"
+                hidden
+                aria-label="Notifications"
+            >
+
+                <div class="floating-panel-header">
+
+                    <div>
+
+                        <span class="panel-eyebrow">
+                            Updates
+                        </span>
+
+                        <h2>
+                            Notifications
+                        </h2>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="panel-close-btn"
+                        data-action="close-notifications"
+                        aria-label="Close notifications"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="notificationList"
+                    class="floating-panel-list"
+                >
+
+                    <article class="floating-list-item unread">
+
+                        <span class="floating-item-icon purple">
+                            📝
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                New assessment activity
+                            </strong>
+
+                            <p>
+                                Students completed your latest quiz.
+                            </p>
+
+                            <time>
+                                10 minutes ago
+                            </time>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="floating-list-item unread">
+
+                        <span class="floating-item-icon green">
+                            📈
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Student performance improved
+                            </strong>
+
+                            <p>
+                                SSS 1A improved by 8% this week.
+                            </p>
+
+                            <time>
+                                1 hour ago
+                            </time>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="floating-list-item">
+
+                        <span class="floating-item-icon blue">
+                            📢
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Announcement delivered
+                            </strong>
+
+                            <p>
+                                Your announcement reached 156 students.
+                            </p>
+
+                            <time>
+                                Yesterday
+                            </time>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <a
+                    href="announcements.html"
+                    class="floating-panel-footer-link"
+                >
+                    View all notifications
+                    <span aria-hidden="true">→</span>
+                </a>
+
+            </div>
+
+
+            <!-- ==========================================================
+                 GLOBAL MESSAGES PANEL
+                 ========================================================== -->
+
+            <div
+                id="messagesPanel"
+                class="floating-panel messages-panel"
+                hidden
+                aria-label="Messages"
+            >
+
+                <div class="floating-panel-header">
+
+                    <div>
+
+                        <span class="panel-eyebrow">
+                            Communication
+                        </span>
+
+                        <h2>
+                            Messages
+                        </h2>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="panel-close-btn"
+                        data-action="close-messages"
+                        aria-label="Close messages"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="messageList"
+                    class="floating-panel-list"
+                >
+
+                    <article class="floating-list-item unread">
+
+                        <span class="message-avatar">
+                            👩🏽‍🎓
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Aisha Bello
+                            </strong>
+
+                            <p>
+                                Please can you explain today's topic?
+                            </p>
+
+                            <time>
+                                15 minutes ago
+                            </time>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="floating-list-item unread">
+
+                        <span class="message-avatar">
+                            👨🏽‍🎓
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Ibrahim Usman
+                            </strong>
+
+                            <p>
+                                Thank you for the extra practice questions.
+                            </p>
+
+                            <time>
+                                1 hour ago
+                            </time>
+
+                        </div>
+
+                    </article>
+
+
+                    <article class="floating-list-item">
+
+                        <span class="message-avatar">
+                            👩🏽‍🎓
+                        </span>
+
+                        <div>
+
+                            <strong>
+                                Maryam Abdul
+                            </strong>
+
+                            <p>
+                                I have submitted my assignment.
+                            </p>
+
+                            <time>
+                                Yesterday
+                            </time>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+
+                <a
+                    href="students.html"
+                    class="floating-panel-footer-link"
+                >
+                    View all messages
+                    <span aria-hidden="true">→</span>
+                </a>
+
+            </div>
+
+
+            <!-- ==========================================================
+                 SEARCH RESULTS PANEL
+                 ========================================================== -->
+
+            <div
+                id="globalSearchPanel"
+                class="search-results-panel"
+                hidden
+            >
+
+                <div class="search-results-header">
+
+                    <div>
+
+                        <span class="panel-eyebrow">
+                            Search
+                        </span>
+
+                        <h2>
+                            Search Results
+                        </h2>
+
+                    </div>
+
+                    <button
+                        type="button"
+                        class="panel-close-btn"
+                        data-action="close-search"
+                        aria-label="Close search results"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="globalSearchResults"
+                    class="search-results-list"
+                ></div>
+
+            </div>
+
+
+            <!-- ==========================================================
+                 LOGOUT CONFIRMATION MODAL
+                 ========================================================== -->
+
+            <div
+                id="logoutModal"
+                class="modal-backdrop"
+                hidden
+                aria-hidden="true"
+            >
+
+                <section
+                    class="modal-card"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="logoutModalTitle"
+                >
+
+                    <button
+                        type="button"
+                        class="modal-close-btn"
+                        data-action="close-logout"
+                        aria-label="Close logout confirmation"
+                    >
+                        ×
+                    </button>
+
+
+                    <div
+                        class="modal-icon warning"
+                        aria-hidden="true"
+                    >
+                        ↪
+                    </div>
+
+
+                    <span class="modal-eyebrow">
+                        Account
+                    </span>
+
+
+                    <h2 id="logoutModalTitle">
+                        Log out of FREUMIA?
+                    </h2>
+
+
+                    <p>
+                        Are you sure you want to log out of your teacher
+                        dashboard?
+                    </p>
+
+
+                    <div class="modal-actions">
+
+                        <button
+                            type="button"
+                            class="modal-button secondary"
+                            data-action="cancel-logout"
+                        >
+                            Cancel
+                        </button>
+
+                        <button
+                            type="button"
+                            class="modal-button danger"
+                            data-action="confirm-logout"
+                        >
+                            Logout
+                        </button>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- ==========================================================
+                 GLOBAL TOAST
+                 ========================================================== -->
+
+            <div
+                id="dashboardToast"
+                class="dashboard-toast"
+                role="status"
+                aria-live="polite"
+                hidden
+            >
+
+                <span
+                    id="toastIcon"
+                    class="toast-icon"
+                    aria-hidden="true"
+                >
+                    ✓
+                </span>
+
+                <div>
+
+                    <strong id="toastTitle">
+                        Success
+                    </strong>
+
+                    <p id="toastMessage">
+                        Action completed successfully.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="toast-close"
+                    data-action="close-toast"
+                    aria-label="Close notification"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ==========================================================
+             JAVASCRIPT
+             ========================================================== -->
+
+        <script
+            src="js/teachers-dashboard.js"
+            defer
+        ></script>
+
+    </body>
+</html>
+
+     
+
+        
+
+                   
