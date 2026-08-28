@@ -1317,9 +1317,9 @@ function initializeCreateMenu() {
 function initializeMobileSidebar() {
 
     const toggle =
-        tdGetElement(
-            "#menuToggle"
-        );
+    tdGetElement(
+        "#openSidebarBtn"
+    );
 
     const sidebar =
         tdGetElement(
@@ -1332,9 +1332,9 @@ function initializeMobileSidebar() {
         );
 
     const closeButton =
-        tdGetElement(
-            "#sidebarCloseBtn"
-        );
+    tdGetElement(
+        "#closeSidebarBtn"
+    );
 
     if (!toggle || !sidebar) {
         return;
