@@ -7,6 +7,8 @@
    1. GLOBAL APPLICATION STATE
    ------------------------------------------------------------ */
 
+console.log("✅ teachers-dashboard.js LOADED");
+
 const TeacherDashboardState = {
     initialized: false,
 
