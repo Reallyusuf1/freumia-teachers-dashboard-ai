@@ -1,0 +1,1901 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Create your FREUMIA Teacher account and join the FREUMIA Teachers AI platform."
+    >
+
+    <meta
+        name="theme-color"
+        content="#07111f"
+    >
+
+    <meta
+        name="author"
+        content="FREUMIA"
+    >
+
+    <title>Teacher Signup | FREUMIA</title>
+
+    <!-- =========================================================
+         FREUMIA TEACHER SIGNUP
+         STEP 7 — HTML STRUCTURE ONLY
+
+         CSS:
+         css/teachers-signup.css
+
+         JAVASCRIPT:
+         js/teachers-signup.js
+
+         SUPABASE:
+         js/freumia-supabase.js
+         ========================================================= -->
+
+
+    <link
+        rel="stylesheet"
+        href="css/teachers-signup.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================================
+         PAGE APPLICATION
+         ========================================================= -->
+
+    <div
+        id="teacherSignupApp"
+        class="teacher-signup-app"
+        data-page="teachers-signup"
+    >
+
+
+        <!-- =====================================================
+             PAGE HEADER
+             ===================================================== -->
+
+        <header class="signup-header">
+
+            <a
+                href="auth-page.html"
+                class="signup-brand"
+                aria-label="Back to FREUMIA authentication"
+            >
+
+                <span
+                    class="brand-logo"
+                    aria-hidden="true"
+                >
+                    🧠
+                </span>
+
+                <span class="brand-content">
+
+                    <strong class="brand-name">
+                        FREUMIA
+                    </strong>
+
+                    <span class="brand-subtitle">
+                        Teachers AI
+                    </span>
+
+                </span>
+
+            </a>
+
+
+            <a
+                href="auth-page.html"
+                class="back-auth-link"
+            >
+                ← Back to Login
+            </a>
+
+        </header>
+
+
+
+        <!-- =====================================================
+             MAIN CONTENT
+             ===================================================== -->
+
+        <main class="signup-main">
+
+
+            <!-- =================================================
+                 INTRODUCTION
+                 ================================================= -->
+
+            <section
+                class="signup-introduction"
+                aria-labelledby="signupTitle"
+            >
+
+                <span class="intro-badge">
+                    TEACHER ONBOARDING
+                </span>
+
+                <h1 id="signupTitle">
+                    Create your Teacher Account
+                </h1>
+
+                <p>
+                    Join FREUMIA Teachers AI and get the tools
+                    you need to teach, create learning resources,
+                    assess students, and use AI to support your
+                    teaching.
+                </p>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 PROGRESS
+                 ================================================= -->
+
+            <nav
+                class="signup-progress"
+                aria-label="Teacher signup progress"
+            >
+
+                <ol class="progress-list">
+
+
+                    <li
+                        class="progress-step active"
+                        data-step="1"
+                    >
+
+                        <span class="progress-number">
+                            1
+                        </span>
+
+                        <span class="progress-label">
+                            Account
+                        </span>
+
+                    </li>
+
+
+                    <li
+                        class="progress-step"
+                        data-step="2"
+                    >
+
+                        <span class="progress-number">
+                            2
+                        </span>
+
+                        <span class="progress-label">
+                            Personal
+                        </span>
+
+                    </li>
+
+
+                    <li
+                        class="progress-step"
+                        data-step="3"
+                    >
+
+                        <span class="progress-number">
+                            3
+                        </span>
+
+                        <span class="progress-label">
+                            Professional
+                        </span>
+
+                    </li>
+
+
+                    <li
+                        class="progress-step"
+                        data-step="4"
+                    >
+
+                        <span class="progress-number">
+                            4
+                        </span>
+
+                        <span class="progress-label">
+                            School
+                        </span>
+
+                    </li>
+
+
+                    <li
+                        class="progress-step"
+                        data-step="5"
+                    >
+
+                        <span class="progress-number">
+                            5
+                        </span>
+
+                        <span class="progress-label">
+                            Verification
+                        </span>
+
+                    </li>
+
+
+                </ol>
+
+            </nav>
+
+
+
+            <!-- =================================================
+                 SIGNUP FORM
+                 ================================================= -->
+
+            <form
+                id="teacherSignupForm"
+                class="teacher-signup-form"
+                novalidate
+            >
+
+
+                <!-- =================================================
+                     STEP 1 — ACCOUNT
+                     ================================================= -->
+
+                <section
+                    id="signupStepAccount"
+                    class="signup-step active"
+                    data-step-panel="1"
+                    aria-labelledby="accountStepTitle"
+                >
+
+                    <div class="step-heading">
+
+                        <span class="step-icon">
+                            🔐
+                        </span>
+
+                        <div>
+
+                            <p class="step-eyebrow">
+                                STEP 1
+                            </p>
+
+                            <h2 id="accountStepTitle">
+                                Create your account
+                            </h2>
+
+                            <p>
+                                Choose how you want to sign in
+                                to your FREUMIA Teacher account.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Google -->
+
+                    <div class="oauth-section">
+
+                        <button
+                            id="teacherGoogleSignupBtn"
+                            class="google-signup-button"
+                            type="button"
+                            data-auth-provider="google"
+                        >
+
+                            <span
+                                class="oauth-icon"
+                                aria-hidden="true"
+                            >
+                                G
+                            </span>
+
+                            <span>
+                                Continue with Google
+                            </span>
+
+                        </button>
+
+
+                        <div class="form-divider">
+
+                            <span>
+                                OR
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Email -->
+
+                    <div class="form-group">
+
+                        <label for="teacherEmail">
+                            Email Address
+                        </label>
+
+                        <input
+                            id="teacherEmail"
+                            name="email"
+                            type="email"
+                            autocomplete="email"
+                            placeholder="teacher@example.com"
+                            required
+                        >
+
+                        <small class="field-hint">
+                            Use an email address you can access.
+                        </small>
+
+                    </div>
+
+
+                    <!-- Password -->
+
+                    <div class="form-group">
+
+                        <label for="teacherPassword">
+                            Password
+                        </label>
+
+                        <input
+                            id="teacherPassword"
+                            name="password"
+                            type="password"
+                            autocomplete="new-password"
+                            placeholder="Create a strong password"
+                            minlength="8"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Confirm Password -->
+
+                    <div class="form-group">
+
+                        <label for="teacherPasswordConfirm">
+                            Confirm Password
+                        </label>
+
+                        <input
+                            id="teacherPasswordConfirm"
+                            name="password_confirm"
+                            type="password"
+                            autocomplete="new-password"
+                            placeholder="Repeat your password"
+                            minlength="8"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- Terms -->
+
+                    <div class="checkbox-group">
+
+                        <label class="checkbox-label">
+
+                            <input
+                                id="teacherTerms"
+                                name="terms"
+                                type="checkbox"
+                                required
+                            >
+
+                            <span>
+                                I agree to the FREUMIA
+                                <a href="terms.html">
+                                    Terms of Service
+                                </a>
+                                and
+                                <a href="privacy.html">
+                                    Privacy Policy
+                                </a>.
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div
+                        id="accountStepError"
+                        class="form-error"
+                        role="alert"
+                        aria-live="polite"
+                    ></div>
+
+
+                    <div class="step-actions">
+
+                        <button
+                            type="button"
+                            class="primary-step-button"
+                            data-action="next-step"
+                            data-next-step="2"
+                        >
+                            Continue
+                            <span aria-hidden="true">
+                                →
+                            </span>
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     STEP 2 — PERSONAL INFORMATION
+                     ================================================= -->
+
+                <section
+                    id="signupStepPersonal"
+                    class="signup-step"
+                    data-step-panel="2"
+                    aria-labelledby="personalStepTitle"
+                    hidden
+                >
+
+                    <div class="step-heading">
+
+                        <span class="step-icon">
+                            👤
+                        </span>
+
+                        <div>
+
+                            <p class="step-eyebrow">
+                                STEP 2
+                            </p>
+
+                            <h2 id="personalStepTitle">
+                                Personal Information
+                            </h2>
+
+                            <p>
+                                Tell us a little about yourself.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Full Name -->
+
+                    <div class="form-group">
+
+                        <label for="teacherFullName">
+                            Full Name
+                        </label>
+
+                        <input
+                            id="teacherFullName"
+                            name="full_name"
+                            type="text"
+                            autocomplete="name"
+                            placeholder="Enter your full name"
+                            required
+                        >
+
+                        <small class="field-hint">
+                            Your name will appear on your teacher profile.
+                        </small>
+
+                    </div>
+
+
+                    <!-- Phone -->
+
+                    <div class="form-group">
+
+                        <label for="teacherPhone">
+                            Phone Number
+                        </label>
+
+                        <input
+                            id="teacherPhone"
+                            name="phone"
+                            type="tel"
+                            autocomplete="tel"
+                            placeholder="Enter your phone number"
+                        >
+
+                    </div>
+
+
+                    <!-- Country -->
+
+                    <div class="form-group">
+
+                        <label for="teacherCountry">
+                            Country
+                        </label>
+
+                        <select
+                            id="teacherCountry"
+                            name="country"
+                            autocomplete="country-name"
+                            required
+                        >
+
+                            <option value="">
+                                Select your country
+                            </option>
+
+                            <option value="Nigeria">
+                                Nigeria
+                            </option>
+
+                            <option value="Ghana">
+                                Ghana
+                            </option>
+
+                            <option value="Kenya">
+                                Kenya
+                            </option>
+
+                            <option value="South Africa">
+                                South Africa
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- State -->
+
+                    <div class="form-group">
+
+                        <label for="teacherState">
+                            State / Province
+                        </label>
+
+                        <input
+                            id="teacherState"
+                            name="state"
+                            type="text"
+                            autocomplete="address-level1"
+                            placeholder="Enter your state or province"
+                        >
+
+                    </div>
+
+
+                    <!-- City -->
+
+                    <div class="form-group">
+
+                        <label for="teacherCity">
+                            City
+                        </label>
+
+                        <input
+                            id="teacherCity"
+                            name="city"
+                            type="text"
+                            autocomplete="address-level2"
+                            placeholder="Enter your city"
+                        >
+
+                    </div>
+
+
+                    <!-- Gender -->
+
+                    <div class="form-group">
+
+                        <label for="teacherGender">
+                            Gender
+                        </label>
+
+                        <select
+                            id="teacherGender"
+                            name="gender"
+                        >
+
+                            <option value="">
+                                Select gender
+                            </option>
+
+                            <option value="male">
+                                Male
+                            </option>
+
+                            <option value="female">
+                                Female
+                            </option>
+
+                            <option value="prefer_not_to_say">
+                                Prefer not to say
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <!-- Date of Birth -->
+
+                    <div class="form-group">
+
+                        <label for="teacherDateOfBirth">
+                            Date of Birth
+                        </label>
+
+                        <input
+                            id="teacherDateOfBirth"
+                            name="date_of_birth"
+                            type="date"
+                            autocomplete="bday"
+                        >
+
+                    </div>
+
+
+                    <div
+                        id="personalStepError"
+                        class="form-error"
+                        role="alert"
+                        aria-live="polite"
+                    ></div>
+
+
+                    <div class="step-actions">
+
+                        <button
+                            type="button"
+                            class="secondary-step-button"
+                            data-action="previous-step"
+                            data-previous-step="1"
+                        >
+                            ← Back
+                        </button>
+
+                        <button
+                            type="button"
+                            class="primary-step-button"
+                            data-action="next-step"
+                            data-next-step="3"
+                        >
+                            Continue
+                            <span aria-hidden="true">
+                                →
+                            </span>
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     STEP 3 — PROFESSIONAL INFORMATION
+                     ================================================= -->
+
+                <section
+                    id="signupStepProfessional"
+                    class="signup-step"
+                    data-step-panel="3"
+                    aria-labelledby="professionalStepTitle"
+                    hidden
+                >
+
+                    <div class="step-heading">
+
+                        <span class="step-icon">
+                            🎓
+                        </span>
+
+                        <div>
+
+                            <p class="step-eyebrow">
+                                STEP 3
+                            </p>
+
+                            <h2 id="professionalStepTitle">
+    Professional Information
+</h2>
+
+<p>
+    Tell us about your teaching experience
+    and areas of expertise.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- =================================================
+     TEACHER TYPE
+     ================================================= -->
+
+<div class="form-group">
+
+    <label for="teacherType">
+        Teacher Type
+    </label>
+
+    <select
+        id="teacherType"
+        name="teacher_type"
+        required
+    >
+
+        <option value="">
+            Select teacher type
+        </option>
+
+        <option value="classroom">
+            Classroom Teacher
+        </option>
+
+        <option value="private">
+            Private Teacher
+        </option>
+
+        <option value="tutor">
+            Tutor
+        </option>
+
+        <option value="school_admin">
+            School Administrator
+        </option>
+
+        <option value="other">
+            Other
+        </option>
+
+    </select>
+
+</div>
+
+
+<!-- =================================================
+     PRIMARY SUBJECT
+     ================================================= -->
+
+<div class="form-group">
+
+    <label for="primarySubject">
+        Primary Subject
+    </label>
+
+    <select
+        id="primarySubject"
+        name="primary_subject"
+        required
+    >
+
+        <option value="">
+            Select primary subject
+        </option>
+
+        <option value="mathematics">
+            Mathematics
+        </option>
+
+        <option value="english">
+            English Language
+        </option>
+
+        <option value="physics">
+            Physics
+        </option>
+
+        <option value="chemistry">
+            Chemistry
+        </option>
+
+        <option value="biology">
+            Biology
+        </option>
+
+        <option value="computer_science">
+            Computer Science
+        </option>
+
+        <option value="social_science">
+            Social Science
+        </option>
+
+        <option value="other">
+            Other
+        </option>
+
+    </select>
+
+</div>
+
+
+<!-- =================================================
+     SUBJECTS
+     ================================================= -->
+
+<fieldset class="form-fieldset">
+
+    <legend>
+        Subjects You Teach
+    </legend>
+
+    <div class="checkbox-grid">
+
+        <label class="checkbox-label">
+
+            <input
+                type="checkbox"
+                name="subjects"
+                value="mathematics"
+            >
+
+            <span>
+                Mathematics
+            </span>
+
+        </label>
+
+
+        <label class="checkbox-label">
+
+            <input
+                type="checkbox"
+                name="subjects"
+                value="english"
+            >
+
+            <span>
+                English
+            </span>
+
+        </label>
+
+
+        <label class="checkbox-label">
+
+            <input
+                type="checkbox"
+                name="subjects"
+                value="physics"
+            >
+
+            <span>
+                Physics
+            </span>
+
+        </label>
+
+
+        <label class="checkbox-label">
+
+            <input
+                type="checkbox"
+                name="subjects"
+                value="chemistry"
+            >
+
+            <span>
+                Chemistry
+            </span>
+
+        </label>
+
+
+        <label class="checkbox-label">
+
+            <input
+                type="checkbox"
+                name="subjects"
+                value="biology"
+            >
+
+            <span>
+                Biology
+            </span>
+
+        </label>
+
+
+        <label class="checkbox-label">
+
+            <input
+                type="checkbox"
+                name="subjects"
+                value="computer_science"
+            >
+
+            <span>
+                Computer Science
+            </span>
+
+        </label>
+
+    </div>
+
+</fieldset>
+
+
+<!-- =================================================
+     CLASS LEVELS
+     ================================================= -->
+
+<fieldset class="form-fieldset">
+
+    <legend>
+        Class Levels You Teach
+    </legend>
+
+    <div class="checkbox-grid">
+
+        <label class="checkbox-label">
+
+            <input
+                type="checkbox"
+                name="class_levels"
+                value="primary"
+            >
+
+            <span>
+                Primary
+            </span>
+
+        </label>
+
+
+        <label class="checkbox-label">
+
+            <input
+                type="checkbox"
+                name="class_levels"
+                value="jss1"
+            >
+
+            <span>
+                JSS 1
+            </span>
+
+        </label>
+
+
+        <label class="checkbox-label">
+
+            <input
+                type="checkbox"
+                name="class_levels"
+                value="jss2"
+            >
+
+            <span>
+                JSS 2
+            </span>
+
+        </label>
+
+
+        <label class="checkbox-label">
+
+            <input
+                type="checkbox"
+                name="class_levels"
+                value="jss3"
+            >
+
+            <span>
+                JSS 3
+            </span>
+
+        </label>
+
+
+        <label class="checkbox-label">
+
+            <input
+                type="checkbox"
+                name="class_levels"
+                value="sss1"
+            >
+
+            <span>
+                SSS 1
+            </span>
+
+        </label>
+
+
+        <label class="checkbox-label">
+
+            <input
+                type="checkbox"
+                name="class_levels"
+                value="sss2"
+            >
+
+            <span>
+                SSS 2
+            </span>
+
+        </label>
+
+
+        <label class="checkbox-label">
+
+            <input
+                type="checkbox"
+                name="class_levels"
+                value="sss3"
+            >
+
+            <span>
+                SSS 3
+            </span>
+
+        </label>
+
+    </div>
+
+</fieldset>
+
+
+<!-- =================================================
+     EXPERIENCE
+     ================================================= -->
+
+<div class="form-group">
+
+    <label for="yearsExperience">
+        Years of Teaching Experience
+    </label>
+
+    <input
+        id="yearsExperience"
+        name="years_experience"
+        type="number"
+        min="0"
+        max="60"
+        placeholder="e.g. 5"
+    >
+
+</div>
+
+
+<!-- =================================================
+     HIGHEST QUALIFICATION
+     ================================================= -->
+
+<div class="form-group">
+
+    <label for="highestQualification">
+        Highest Qualification
+    </label>
+
+    <select
+        id="highestQualification"
+        name="highest_qualification"
+    >
+
+        <option value="">
+            Select qualification
+        </option>
+
+        <option value="secondary">
+            Secondary School
+        </option>
+
+        <option value="nd">
+            ND
+        </option>
+
+        <option value="nce">
+            NCE
+        </option>
+
+        <option value="hnd">
+            HND
+        </option>
+
+        <option value="bachelor">
+            Bachelor's Degree
+        </option>
+
+        <option value="master">
+            Master's Degree
+        </option>
+
+        <option value="phd">
+            PhD
+        </option>
+
+        <option value="other">
+            Other
+        </option>
+
+    </select>
+
+</div>
+
+
+<!-- =================================================
+     SPECIALIZATION
+     ================================================= -->
+
+<div class="form-group">
+
+    <label for="teacherSpecialization">
+        Specialization
+    </label>
+
+    <input
+        id="teacherSpecialization"
+        name="specialization"
+        type="text"
+        placeholder="e.g. Mathematics Education"
+    >
+
+</div>
+
+
+<!-- =================================================
+     EMPLOYMENT STATUS
+     ================================================= -->
+
+<div class="form-group">
+
+    <label for="employmentStatus">
+        Employment Status
+    </label>
+
+    <select
+        id="employmentStatus"
+        name="employment_status"
+    >
+
+        <option value="">
+            Select employment status
+        </option>
+
+        <option value="employed">
+            Employed
+        </option>
+
+        <option value="self_employed">
+            Self-employed
+        </option>
+
+        <option value="freelance">
+            Freelance
+        </option>
+
+        <option value="unemployed">
+            Currently not employed
+        </option>
+
+    </select>
+
+</div>
+
+
+<div
+    id="professionalStepError"
+    class="form-error"
+    role="alert"
+    aria-live="polite"
+></div>
+
+
+<div class="step-actions">
+
+    <button
+        type="button"
+        class="secondary-step-button"
+        data-action="previous-step"
+        data-previous-step="2"
+    >
+        ← Back
+    </button>
+
+    <button
+        type="button"
+        class="primary-step-button"
+        data-action="next-step"
+        data-next-step="4"
+    >
+        Continue
+
+        <span aria-hidden="true">
+            →
+        </span>
+
+    </button>
+
+</div>
+
+</section>
+
+
+
+<!-- =================================================
+     STEP 4 — SCHOOL INFORMATION
+     ================================================= -->
+
+<section
+    id="signupStepSchool"
+    class="signup-step"
+    data-step-panel="4"
+    aria-labelledby="schoolStepTitle"
+    hidden
+>
+
+    <div class="step-heading">
+
+        <span class="step-icon">
+            🏫
+        </span>
+
+        <div>
+
+            <p class="step-eyebrow">
+                STEP 4
+            </p>
+
+            <h2 id="schoolStepTitle">
+                School Information
+            </h2>
+
+            <p>
+                Connect your teacher profile with
+                your school.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- SCHOOL -->
+
+    <div class="form-group">
+
+        <label for="teacherSchool">
+            School
+        </label>
+
+        <select
+            id="teacherSchool"
+            name="school_id"
+        >
+
+            <option value="">
+                Select your school
+            </option>
+
+        </select>
+
+        <small class="field-hint">
+            Available schools will be loaded from
+            FREUMIA.
+        </small>
+
+    </div>
+
+
+    <!-- SCHOOL NAME -->
+
+    <div class="form-group">
+
+        <label for="teacherSchoolName">
+            School Name
+        </label>
+
+        <input
+            id="teacherSchoolName"
+            name="school_name"
+            type="text"
+            placeholder="Enter school name"
+        >
+
+    </div>
+
+
+    <!-- SCHOOL CODE -->
+
+    <div class="form-group">
+
+        <label for="teacherSchoolCode">
+    School
+</label>
+
+<input
+    id="teacherSchoolCode"
+    name="school_code"
+    type="text"
+    placeholder="Enter school code if available"
+>
+
+<small class="field-hint">
+    If your school has a FREUMIA school code,
+    enter it here.
+</small>
+
+</div>
+
+
+<!-- =================================================
+     SCHOOL ADDRESS
+     ================================================= -->
+
+<div class="form-group">
+
+    <label for="teacherAddress">
+        School Address
+    </label>
+
+    <textarea
+        id="teacherAddress"
+        name="address"
+        rows="4"
+        placeholder="Enter school address"
+    ></textarea>
+
+</div>
+
+
+<!-- =================================================
+     NO SCHOOL
+     ================================================= -->
+
+<div class="checkbox-group">
+
+    <label class="checkbox-label">
+
+        <input
+            id="teacherNoSchool"
+            name="no_school"
+            type="checkbox"
+        >
+
+        <span>
+            I currently do not have a
+            registered school.
+        </span>
+
+    </label>
+
+</div>
+
+
+<div
+    id="schoolStepError"
+    class="form-error"
+    role="alert"
+    aria-live="polite"
+></div>
+
+
+<div class="step-actions">
+
+    <button
+        type="button"
+        class="secondary-step-button"
+        data-action="previous-step"
+        data-previous-step="3"
+    >
+        ← Back
+    </button>
+
+    <button
+        type="button"
+        class="primary-step-button"
+        data-action="next-step"
+        data-next-step="5"
+    >
+        Continue
+
+        <span aria-hidden="true">
+            →
+        </span>
+
+    </button>
+
+</div>
+
+</section>
+
+
+
+<!-- =================================================
+     STEP 5 — VERIFICATION
+     ================================================= -->
+
+<section
+    id="signupStepVerification"
+    class="signup-step"
+    data-step-panel="5"
+    aria-labelledby="verificationStepTitle"
+    hidden
+>
+
+    <div class="step-heading">
+
+        <span class="step-icon">
+            🛡️
+        </span>
+
+        <div>
+
+            <p class="step-eyebrow">
+                STEP 5
+            </p>
+
+            <h2 id="verificationStepTitle">
+                Teacher Verification
+            </h2>
+
+            <p>
+                Provide professional information
+                that can help verify your teacher
+                identity.
+            </p>
+
+        </div>
+
+    </div>
+
+
+<!-- =================================================
+     VERIFICATION NOTICE
+     ================================================= -->
+
+<div
+    class="verification-information"
+    role="note"
+>
+
+    <strong>
+        Your information will be reviewed.
+    </strong>
+
+    <p>
+        Completing this form does not
+        automatically make your account a
+        verified teacher. FREUMIA will review
+        your submitted information before
+        full teacher access is granted.
+    </p>
+
+</div>
+
+
+<!-- =================================================
+     TRCN
+     ================================================= -->
+
+<div class="form-group">
+
+    <label for="trcnNumber">
+        TRCN Number
+    </label>
+
+    <input
+        id="trcnNumber"
+        name="trcn_number"
+        type="text"
+        placeholder="Enter your TRCN number"
+        autocomplete="off"
+    >
+
+    <small class="field-hint">
+        If you have a TRCN registration number,
+        provide it for professional verification.
+    </small>
+
+</div>
+
+
+<!-- =================================================
+     PROFESSIONAL QUALIFICATION
+     ================================================= -->
+
+<div class="form-group">
+
+    <label for="professionalQualification">
+        Professional Qualification
+    </label>
+
+    <input
+        id="professionalQualification"
+        name="professional_qualification"
+        type="text"
+        placeholder="e.g. NCE, B.Ed, PGDE"
+    >
+
+</div>
+
+
+<!-- =================================================
+     VERIFICATION CONSENT
+     ================================================= -->
+
+<div class="checkbox-group">
+
+    <label class="checkbox-label">
+
+        <input
+            id="verificationConsent"
+            name="verification_consent"
+            type="checkbox"
+            required
+        >
+
+        <span>
+            I confirm that the information
+            I have provided is accurate and
+            may be reviewed for teacher
+            verification.
+        </span>
+
+    </label>
+
+</div>
+
+
+<!-- =================================================
+     IDENTITY VERIFICATION
+     ================================================= -->
+
+<div
+    class="identity-verification-placeholder"
+>
+
+    <span
+        class="identity-icon"
+        aria-hidden="true"
+    >
+        🔐
+    </span>
+
+    <div>
+
+        <h3>
+            Identity Verification
+        </h3>
+
+        <p>
+            Additional identity verification,
+            including liveness verification,
+            may be required before your teacher
+            account receives full access.
+        </p>
+
+        <span class="verification-status-label">
+            Not started
+        </span>
+
+    </div>
+
+</div>
+
+
+<div
+    id="verificationStepError"
+    class="form-error"
+    role="alert"
+    aria-live="polite"
+></div>
+
+
+<div class="step-actions">
+
+    <button
+        type="button"
+        class="secondary-step-button"
+        data-action="previous-step"
+        data-previous-step="4"
+    >
+        ← Back
+    </button>
+
+    <button
+        id="submitTeacherSignupBtn"
+        type="submit"
+        class="primary-step-button"
+        data-action="submit-teacher"
+    >
+
+        Submit Teacher Application
+
+        <span aria-hidden="true">
+            →
+        </span>
+
+    </button>
+
+</div>
+
+</section>
+
+
+
+<!-- =================================================
+     SUBMISSION SUCCESS
+     ================================================= -->
+
+<section
+    id="teacherSignupSuccess"
+    class="signup-result success-result"
+    aria-labelledby="signupSuccessTitle"
+    hidden
+>
+
+    <div
+        class="result-icon"
+        aria-hidden="true"
+    >
+        ✓
+    </div>
+
+    <h2 id="signupSuccessTitle">
+        Teacher Application Submitted
+    </h2>
+
+    <p>
+        Your FREUMIA Teacher account has been
+        created successfully. Your profile is now
+        pending verification.
+    </p>
+
+    <p>
+        You will receive access to the full
+        Teachers AI Dashboard after the required
+        verification steps are completed.
+    </p>
+
+    <div class="result-actions">
+
+        <a
+            href="teacher-profile.html"
+            class="primary-result-button"
+        >
+            View Teacher Profile
+        </a>
+
+        <a
+            href="teachers-dashboard.html"
+            class="secondary-result-button"
+        >
+            Go to Teachers Dashboard
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- =================================================
+     SUBMISSION ERROR
+     ================================================= -->
+
+<section
+    id="teacherSignupError"
+    class="signup-result error-result"
+    aria-labelledby="signupErrorTitle"
+    hidden
+>
+
+    <div
+        class="result-icon"
+        aria-hidden="true"
+    >
+        !
+    </div>
+
+    <h2 id="signupErrorTitle">
+        We couldn't complete your application
+    </h2>
+
+    <p id="teacherSignupErrorMessage">
+        Something went wrong while creating your
+        teacher account.
+    </p>
+
+    <div class="result-actions">
+
+        <button
+            type="button"
+            class="primary-result-button"
+            data-action="retry-signup"
+        >
+            Try Again
+        </button>
+
+        <a
+            href="auth-page.html"
+            class="secondary-result-button"
+        >
+            Return to Login
+        </a>
+
+    </div>
+
+</section>
+
+
+</form>
+
+
+
+<!-- =================================================
+     SECURITY / TRUST FOOTER
+     ================================================= -->
+
+<section
+    class="signup-security"
+    aria-label="Account security information"
+>
+
+    <div class="security-item">
+
+        <span
+            class="security-icon"
+            aria-hidden="true"
+        >
+            🔒
+        </span>
+
+        <div>
+
+            <strong>
+                Secure Authentication
+            </strong>
+
+            <span>
+                Your account is protected by
+                FREUMIA authentication.
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="security-item">
+
+        <span
+            class="security-icon"
+            aria-hidden="true"
+        >
+            🛡️
+        </span>
+
+        <div>
+
+            <strong>
+                Teacher Verification
+            </strong>
+
+            <span>
+                Teacher access requires verification.
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <div class="security-item">
+
+        <span
+            class="security-icon"
+            aria-hidden="true"
+        >
+            🤖
+        </span>
+
+        <div>
+
+            <strong>
+                FREUMIA Teachers AI
+            </strong>
+
+            <span>
+                Built to support better teaching
+                with AI.
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+</main>
+
+
+
+<!-- =================================================
+     PAGE FOOTER
+     ================================================= -->
+
+<footer class="signup-footer">
+
+    <p>
+        © 2026 FREUMIA. All rights reserved.
+    </p>
+
+    <nav
+        class="footer-links"
+        aria-label="Footer navigation"
+    >
+
+        <a href="privacy.html">
+            Privacy
+        </a>
+
+        <a href="terms.html">
+            Terms
+        </a>
+
+        <a href="contact.html">
+            Contact
+        </a>
+
+    </nav>
+
+</footer>
+
+
+</div>
+
+
+
+<!-- =================================================
+     JAVASCRIPT
+     =================================================
+
+     JavaScript will be implemented in STEP 9.
+
+     No inline JavaScript is used here.
+     ================================================= -->
+
+<script
+    type="module"
+    src="js/teachers-signup.js"
+></script>
+
+
+</body>
+
+</html>
+                            
