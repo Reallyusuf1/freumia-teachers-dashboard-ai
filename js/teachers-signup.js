@@ -17,14 +17,46 @@
 
 
 /* ============================================================
-   1. SUPABASE IMPORT
+   1. SUPABASE CLIENT
+   ------------------------------------------------------------
+   freumia-supabase.js initializes the shared client as:
+   window.supabaseClient
    ============================================================ */
 
-import {
-    supabase,
-    getCurrentUser
-} from "./freumia-supabase.js";
+const supabase =
+    window.FreumiaSupabase?.client ||
+    window.supabaseClient;
 
+
+if (!supabase) {
+
+    throw new Error(
+        "FREUMIA Supabase client is not initialized."
+    );
+
+}
+
+
+/* ============================================================
+   2. CURRENT AUTH USER
+   ============================================================ */
+
+async function getCurrentUser() {
+
+    const {
+        data,
+        error
+    } = await supabase.auth.getUser();
+
+
+    if (error) {
+        throw error;
+    }
+
+
+    return data?.user || null;
+
+}
 
 /* ============================================================
    2. APPLICATION STATE
