@@ -295,8 +295,8 @@ async function loadTeacherProfile() {
             error
         } = await supabaseClient
             .from("teacher_profiles")
-            .select("*")
-            .eq("user_id", user.id)
+.select("*")
+.eq("profile_id", user.id)
             .maybeSingle();
 
         if (error) {
