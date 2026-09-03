@@ -347,15 +347,17 @@ function updateTeacherIdentity() {
         "Teacher";
 
     const teacherRole =
-        profile?.subject ||
-        profile?.role ||
-        "Teacher";
+    profile?.primary_subject ||
+    profile?.subjects?.[0] ||
+    "Teacher";
 
     const avatarUrl =
         profile?.avatar_url ||
         metadata.avatar_url ||
         metadata.picture ||
         null;
+   const teacherId =
+    profile?.teacher_id || "";
 
     const nameElements = tdGetElements(
         "[data-teacher-name]"
@@ -376,6 +378,14 @@ function updateTeacherIdentity() {
     const avatarElements = tdGetElements(
         "[data-teacher-avatar]"
     );
+   
+   const teacherIdElements = tdGetElements(
+    "[data-teacher-id]"
+);
+
+teacherIdElements.forEach(element => {
+    element.textContent = teacherId;
+});
 
     avatarElements.forEach(element => {
 
