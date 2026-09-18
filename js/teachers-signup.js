@@ -1343,7 +1343,17 @@ async function handleFormSubmit(event) {
         }
 
 
-        showSuccess();
+        const submitResult =
+    await submitTeacherVerificationApplication();
+
+if (!submitResult?.success) {
+    throw new Error(
+        submitResult?.message ||
+        "VERIFICATION_SUBMISSION_FAILED"
+    );
+}
+
+showSuccess();
 
     } catch (error) {
 
@@ -1553,6 +1563,48 @@ async function provisionTeacher(data) {
 
 }
 
+/* ============================================================
+   24A. EXPLICIT VERIFICATION SUBMISSION
+   ------------------------------------------------------------
+   VA-2.3:
+   Submit the teacher verification application explicitly
+   through the secure Supabase RPC.
+   ============================================================ */
+
+async function submitTeacherVerificationApplication() {
+
+    const {
+        data,
+        error
+    } = await supabase.rpc(
+        "submit_teacher_verification_application"
+    );
+
+    if (error) {
+
+        console.error(
+            "Teacher verification submission failed:",
+            error
+        );
+
+        throw error;
+    }
+
+    if (!data?.success) {
+
+        throw new Error(
+            data?.message ||
+            "VERIFICATION_SUBMISSION_FAILED"
+        );
+    }
+
+    console.log(
+        "Teacher verification application submitted:",
+        data
+    );
+
+    return data;
+}
 
 /* ============================================================
    25. COLLECT FORM DATA
