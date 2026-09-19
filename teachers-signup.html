@@ -1541,6 +1541,67 @@
 
 </div>
 
+    <!-- ============================================================
+     VERIFICATION PHOTO
+     VA-2.4 — Teacher Verification Photo Upload UI
+     ============================================================ -->
+
+<div class="verification-photo-section">
+
+    <div class="verification-photo-header">
+        <h3>Teacher Verification Photo</h3>
+
+        <p>
+            Upload a clear photo of yourself. This photo will be
+            used for teacher verification.
+        </p>
+    </div>
+
+    <div class="verification-photo-card">
+
+        <!-- Preview -->
+        <div
+            id="verificationPhotoPreview"
+            class="verification-photo-preview"
+            aria-label="Verification photo preview"
+        >
+            <div class="verification-photo-placeholder">
+                <span>📷</span>
+                <span>No photo selected</span>
+            </div>
+        </div>
+
+        <!-- File input -->
+        <input
+            type="file"
+            id="verificationPhoto"
+            name="verificationPhoto"
+            accept="image/jpeg,image/png,image/webp"
+            hidden
+        >
+
+        <button
+            type="button"
+            id="verificationPhotoButton"
+            class="verification-photo-button"
+        >
+            Choose Verification Photo
+        </button>
+
+        <p class="verification-photo-hint">
+            JPG, PNG or WEBP · Maximum 5 MB
+        </p>
+
+        <p
+            id="verificationPhotoStatus"
+            class="verification-photo-status"
+            aria-live="polite"
+        ></p>
+
+    </div>
+
+</div>
+
 
 <!-- =================================================
      VERIFICATION CONSENT
