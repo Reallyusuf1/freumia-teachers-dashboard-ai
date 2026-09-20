@@ -75,6 +75,10 @@ const state = {
     googleUser: null,
 
     formData: {},
+   
+verificationPhotoFile: null,
+
+verificationPhotoPath: null,
 
 };
 
@@ -114,6 +118,26 @@ const errorMessage = document.getElementById(
 const schoolSelect = document.getElementById(
     "teacherSchool"
 );
+
+const verificationPhotoInput =
+    document.getElementById(
+        "verificationPhoto"
+    );
+
+const verificationPhotoButton =
+    document.getElementById(
+        "verificationPhotoButton"
+    );
+
+const verificationPhotoPreview =
+    document.getElementById(
+        "verificationPhotoPreview"
+    );
+
+const verificationPhotoStatus =
+    document.getElementById(
+        "verificationPhotoStatus"
+    );
 
 
 /* ============================================================
@@ -379,6 +403,28 @@ function bindEvents() {
         noSchool.addEventListener(
             "change",
             handleNoSchoolChange
+        );
+
+    }
+       if (verificationPhotoButton) {
+
+        verificationPhotoButton.addEventListener(
+            "click",
+            () => {
+
+                verificationPhotoInput?.click();
+
+            }
+        );
+
+    }
+
+
+    if (verificationPhotoInput) {
+
+        verificationPhotoInput.addEventListener(
+            "change",
+            handleVerificationPhotoSelection
         );
 
     }
@@ -1232,6 +1278,167 @@ function validateVerificationStep() {
 
 }
 
+    if (
+        !state.verificationPhotoFile &&
+        !state.verificationPhotoPath
+    ) {
+
+        showFieldError(
+            "verificationStepError",
+            "Please upload your teacher verification photo."
+        );
+
+        verificationPhotoButton?.focus();
+
+        return false;
+
+    }
+/* ============================================================
+   21A. TEACHER VERIFICATION PHOTO SELECTION
+   ------------------------------------------------------------
+   VA-2.4:
+   Handles local image validation and preview.
+   Upload happens only after teacher provisioning.
+   ============================================================ */
+
+function handleVerificationPhotoSelection(event) {
+
+    const file =
+        event.target?.files?.[0];
+
+
+    if (!file) {
+        return;
+    }
+
+
+    const allowedTypes = [
+        "image/jpeg",
+        "image/png",
+        "image/webp",
+    ];
+
+
+    const maxSize =
+        5 * 1024 * 1024;
+
+
+    if (!allowedTypes.includes(file.type)) {
+
+        state.verificationPhotoFile = null;
+
+        if (verificationPhotoInput) {
+            verificationPhotoInput.value = "";
+        }
+
+        setVerificationPhotoStatus(
+            "Please select a JPG, PNG, or WEBP image."
+        );
+
+        return;
+
+    }
+
+
+    if (file.size > maxSize) {
+
+        state.verificationPhotoFile = null;
+
+        if (verificationPhotoInput) {
+            verificationPhotoInput.value = "";
+        }
+
+        setVerificationPhotoStatus(
+            "The verification photo must not exceed 5 MB."
+        );
+
+        return;
+
+    }
+
+
+    state.verificationPhotoFile =
+        file;
+
+    state.verificationPhotoPath =
+        null;
+
+
+    showVerificationPhotoPreview(
+        file
+    );
+
+
+    setVerificationPhotoStatus(
+        "Photo selected. It will be uploaded securely when you submit."
+    );
+
+}
+
+
+/* ============================================================
+   21B. VERIFICATION PHOTO PREVIEW
+   ============================================================ */
+
+function showVerificationPhotoPreview(file) {
+
+    if (!verificationPhotoPreview) {
+        return;
+    }
+
+
+    const objectUrl =
+        URL.createObjectURL(file);
+
+
+    verificationPhotoPreview.innerHTML = "";
+
+
+    const image =
+        document.createElement("img");
+
+
+    image.src =
+        objectUrl;
+
+    image.alt =
+        "Teacher verification photo preview";
+
+
+    image.onload = () => {
+
+        URL.revokeObjectURL(
+            objectUrl
+        );
+
+    };
+
+
+    verificationPhotoPreview.appendChild(
+        image
+    );
+
+}
+
+
+/* ============================================================
+   21C. VERIFICATION PHOTO STATUS
+   ============================================================ */
+
+function setVerificationPhotoStatus(
+    message
+) {
+
+    if (!verificationPhotoStatus) {
+        return;
+    }
+
+
+    verificationPhotoStatus.textContent =
+        message;
+
+}
+
 
 /* ============================================================
    22. FORM SUBMISSION
@@ -1328,30 +1535,61 @@ async function handleFormSubmit(event) {
          */
 
         const result =
-            await provisionTeacher(
-                data
-            );
+    await provisionTeacher(
+        data
+    );
 
 
-        if (!result?.ok) {
+if (!result?.ok) {
 
-            throw new Error(
-                result?.error ||
-                "PROVISIONING_FAILED"
-            );
+    throw new Error(
+        result?.error ||
+        "PROVISIONING_FAILED"
+    );
 
-        }
+}
 
 
-        const submitResult =
+/*
+ * VA-2.4:
+ * Upload teacher verification photo
+ * only after the teacher profile has
+ * been securely provisioned.
+ */
+
+const photoResult =
+    await uploadTeacherVerificationPhoto();
+
+
+if (!photoResult?.success) {
+
+    throw new Error(
+        photoResult?.message ||
+        "VERIFICATION_PHOTO_UPLOAD_FAILED"
+    );
+
+}
+
+
+/*
+ * VA-2.3:
+ * Explicitly submit the teacher
+ * verification application.
+ */
+
+const submitResult =
     await submitTeacherVerificationApplication();
 
+
 if (!submitResult?.success) {
+
     throw new Error(
         submitResult?.message ||
         "VERIFICATION_SUBMISSION_FAILED"
     );
+
 }
+
 
 showSuccess();
 
@@ -1604,6 +1842,242 @@ async function submitTeacherVerificationApplication() {
     );
 
     return data;
+}
+
+/* ============================================================
+   24A. TEACHER VERIFICATION PHOTO UPLOAD
+   ------------------------------------------------------------
+   VA-2.4:
+   Uploads the selected teacher photo to the
+   private teacher-verification bucket and
+   registers the path through the secure RPC.
+   ============================================================ */
+
+async function uploadTeacherVerificationPhoto() {
+
+    if (!state.authUser) {
+
+        throw new Error(
+            "AUTHENTICATION_REQUIRED"
+        );
+
+    }
+
+
+    const file =
+        state.verificationPhotoFile;
+
+
+    if (!file) {
+
+        throw new Error(
+            "VERIFICATION_PHOTO_REQUIRED"
+        );
+
+    }
+
+
+    const allowedTypes = [
+        "image/jpeg",
+        "image/png",
+        "image/webp",
+    ];
+
+
+    const maxSize =
+        5 * 1024 * 1024;
+
+
+    if (!allowedTypes.includes(file.type)) {
+
+        throw new Error(
+            "VERIFICATION_PHOTO_TYPE_INVALID"
+        );
+
+    }
+
+
+    if (file.size > maxSize) {
+
+        throw new Error(
+            "VERIFICATION_PHOTO_TOO_LARGE"
+        );
+
+    }
+
+
+    const extensionMap = {
+
+        "image/jpeg": "jpg",
+        "image/png": "png",
+        "image/webp": "webp",
+
+    };
+
+
+    const extension =
+        extensionMap[file.type];
+
+
+    const uniqueName =
+        `${Date.now()}-${crypto.randomUUID()}.${extension}`;
+
+
+    /*
+     * VA-2.4 Storage policy requires
+     * the first folder to be auth.uid().
+     */
+
+    const photoPath =
+        `${state.authUser.id}/${uniqueName}`;
+
+
+    setVerificationPhotoStatus(
+        "Uploading verification photo..."
+    );
+
+
+    const {
+        error: uploadError
+    } =
+        await supabase.storage
+            .from("teacher-verification")
+            .upload(
+                photoPath,
+                file,
+                {
+                    contentType:
+                        file.type,
+
+                    cacheControl:
+                        "3600",
+
+                    upsert:
+                        false,
+                }
+            );
+
+
+    if (uploadError) {
+
+        console.error(
+            "Teacher verification photo upload failed:",
+            uploadError
+        );
+
+        throw uploadError;
+
+    }
+
+
+    /*
+     * Register the uploaded path through
+     * the SECURITY DEFINER RPC.
+     */
+
+    const {
+        data,
+        error
+    } =
+        await supabase.rpc(
+            "set_teacher_verification_photo",
+            {
+                p_photo_path:
+                    photoPath,
+            }
+        );
+
+
+    if (error) {
+
+        console.error(
+            "Teacher verification photo registration failed:",
+            error
+        );
+
+        throw error;
+
+    }
+
+
+    if (!data?.success) {
+
+        throw new Error(
+            data?.message ||
+            "VERIFICATION_PHOTO_REGISTRATION_FAILED"
+        );
+
+    }
+
+
+    state.verificationPhotoPath =
+        photoPath;
+
+
+    setVerificationPhotoStatus(
+        "Verification photo uploaded successfully."
+    );
+
+
+    console.log(
+        "Teacher verification photo uploaded:",
+        data
+    );
+
+
+    return data;
+
+}
+
+
+/* ============================================================
+   24B. EXPLICIT VERIFICATION SUBMISSION
+   ------------------------------------------------------------
+   VA-2.3:
+   Submit the teacher verification application
+   through the secure Supabase RPC.
+   ============================================================ */
+
+async function submitTeacherVerificationApplication() {
+
+    const {
+        data,
+        error
+    } = await supabase.rpc(
+        "submit_teacher_verification_application"
+    );
+
+
+    if (error) {
+
+        console.error(
+            "Teacher verification submission failed:",
+            error
+        );
+
+        throw error;
+
+    }
+
+
+    if (!data?.success) {
+
+        throw new Error(
+            data?.message ||
+            "VERIFICATION_SUBMISSION_FAILED"
+        );
+
+    }
+
+
+    console.log(
+        "Teacher verification application submitted:",
+        data
+    );
+
+
+    return data;
+
 }
 
 /* ============================================================
