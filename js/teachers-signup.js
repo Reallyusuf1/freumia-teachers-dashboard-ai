@@ -1260,6 +1260,23 @@ function validateVerificationStep() {
         );
 
 
+    if (
+        !state.verificationPhotoFile &&
+        !state.verificationPhotoPath
+    ) {
+
+        showFieldError(
+            "verificationStepError",
+            "Please upload your teacher verification photo."
+        );
+
+        verificationPhotoButton?.focus();
+
+        return false;
+
+    }
+
+
     if (!consent?.checked) {
 
         showFieldError(
@@ -1277,22 +1294,6 @@ function validateVerificationStep() {
     return true;
 
 }
-
-    if (
-        !state.verificationPhotoFile &&
-        !state.verificationPhotoPath
-    ) {
-
-        showFieldError(
-            "verificationStepError",
-            "Please upload your teacher verification photo."
-        );
-
-        verificationPhotoButton?.focus();
-
-        return false;
-
-    }
 /* ============================================================
    21A. TEACHER VERIFICATION PHOTO SELECTION
    ------------------------------------------------------------
