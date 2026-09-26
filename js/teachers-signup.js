@@ -80,6 +80,8 @@ verificationPhotoFile: null,
 
 verificationPhotoPath: null,
 
+verificationApplicationStatus: null,
+
 };
 
 
@@ -171,6 +173,8 @@ async function initializeTeacherSignup() {
 
         await restoreGoogleProfile();
 
+       await loadExistingVerificationStatus();
+
         updateStepUI();
 
     } catch (error) {
@@ -217,6 +221,101 @@ async function loadAuthenticatedUser() {
     }
 
 }
+
+/* ============================================================
+   6A. LOAD EXISTING TEACHER VERIFICATION STATUS
+   ------------------------------------------------------------
+   Prevents duplicate submission when a teacher already has
+   a submitted, under-review, or verified application.
+   ============================================================ */
+
+async function loadExistingVerificationStatus() {
+
+    if (!state.authUser) {
+        return;
+    }
+
+    try {
+
+        const {
+            data: teacherProfile,
+            error: profileError
+        } = await supabase
+            .from("teacher_profiles")
+            .select("id")
+            .eq("profile_id", state.authUser.id)
+            .maybeSingle();
+
+        if (profileError) {
+            console.warn(
+                "Could not load teacher profile status:",
+                profileError
+            );
+
+            return;
+        }
+
+        if (!teacherProfile?.id) {
+            return;
+        }
+
+        const {
+            data: verification,
+            error: verificationError
+        } = await supabase
+            .from("teacher_verifications")
+            .select(
+                "application_status, overall_status, teacher_photo_path"
+            )
+            .eq(
+                "teacher_profile_id",
+                teacherProfile.id
+            )
+            .maybeSingle();
+
+        if (verificationError) {
+            console.warn(
+                "Could not load teacher verification status:",
+                verificationError
+            );
+
+            return;
+        }
+
+        if (!verification) {
+            return;
+        }
+
+        state.verificationApplicationStatus =
+            verification.application_status || null;
+
+        if (
+            verification.teacher_photo_path
+        ) {
+
+            state.verificationPhotoPath =
+                verification.teacher_photo_path;
+
+        }
+
+        console.log(
+            "Existing teacher verification status:",
+            verification
+        );
+
+        updateVerificationApplicationUI();
+
+    } catch (error) {
+
+        console.warn(
+            "Existing verification status check failed:",
+            error
+        );
+
+    }
+
+}
+
 
 
 /* ============================================================
@@ -1813,6 +1912,20 @@ async function provisionTeacher(data) {
 
 async function uploadTeacherVerificationPhoto() {
 
+       if (
+        state.verificationApplicationStatus === "submitted" ||
+        state.verificationApplicationStatus === "under_review" ||
+        state.verificationApplicationStatus === "verified"
+    ) {
+
+        return {
+            success: false,
+            message:
+                "APPLICATION_ALREADY_SUBMITTED"
+        };
+
+       }
+
     if (!state.authUser) {
 
         throw new Error(
@@ -2455,6 +2568,60 @@ function updateProgressAfterSubmission() {
 
 }
 
+/* ============================================================
+   30A. EXISTING VERIFICATION APPLICATION UI
+   ============================================================ */
+
+function updateVerificationApplicationUI() {
+
+    const status =
+        state.verificationApplicationStatus;
+
+    if (!status) {
+        return;
+    }
+
+    if (
+        status === "submitted" ||
+        status === "under_review" ||
+        status === "verified"
+    ) {
+
+        if (submitTeacherSignupBtn) {
+
+            submitTeacherSignupBtn.disabled =
+                true;
+
+            submitTeacherSignupBtn.innerHTML = `
+                Application Already Submitted
+            `;
+
+        }
+
+        if (verificationPhotoButton) {
+
+            verificationPhotoButton.disabled =
+                true;
+
+        }
+
+        if (verificationPhotoInput) {
+
+            verificationPhotoInput.disabled =
+                true;
+
+        }
+
+        setVerificationPhotoStatus(
+            status === "verified"
+                ? "Your teacher verification has already been completed."
+                : "Your teacher application has already been submitted and is under review."
+        );
+
+    }
+
+}
+
 
 /* ============================================================
    31. SUBMIT BUTTON
@@ -2468,7 +2635,12 @@ function updateSubmitButton() {
 
 
     submitTeacherSignupBtn.disabled =
-        state.isSubmitting;
+    state.isSubmitting ||
+    (
+        state.verificationApplicationStatus === "submitted" ||
+        state.verificationApplicationStatus === "under_review" ||
+        state.verificationApplicationStatus === "verified"
+    );
 
 
     if (state.isSubmitting) {
@@ -2838,6 +3010,12 @@ function getFriendlySignupError(error) {
 
             return (
                 "The selected school could not be found. Please select another school or enter the school name."
+            );
+
+         case "APPLICATION_ALREADY_SUBMITTED":
+
+            return (
+                "Your teacher application has already been submitted and cannot be submitted again while it is under review."
             );
 
 
