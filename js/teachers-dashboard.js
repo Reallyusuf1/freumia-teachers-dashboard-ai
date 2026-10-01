@@ -256,7 +256,7 @@ async function initializeTeacherSession() {
 function handleTeacherAuthenticationFailure() {
 
     const loginUrl =
-        "teacher-login.html";
+        "teachers-login.html";
 
     showTeacherDashboardError(
         "Your teacher session has expired. Please sign in again."
